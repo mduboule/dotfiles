@@ -1,0 +1,11 @@
+/*
+*.swp
+
+!.gitignore
+
+!nvim/
+!shellconfig/
+
+shellconfig/z/.z
+nvim/.netrwhist
+
