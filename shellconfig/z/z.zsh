@@ -13,7 +13,7 @@
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
 #
-# The above copyright notice and this permission notice shall be included in all
+# The above copyright notice and this permission notice hall be included in all
 # copies or substantial portions of the Software.
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -81,9 +81,7 @@ fi
 _zshz_usage() {
   print "Usage: ${ZSHZ_CMD:-${_Z_CMD:-z}} [OPTION]... [ARGUMENT]
 Jump to a directory that you have visited frequently or recently, or a bit of both, based on the partial string ARGUMENT.
-
 With no ARGUMENT, list the directory history in ascending rank.
-
   -c    Only match subdirectories of the current directory
   -e    Echo the best match without going to it
   -h    Display this help and exit
@@ -107,6 +105,10 @@ With no ARGUMENT, list the directory history in ascending rank.
 
 # Global associative array for internal use
 typeset -gA ZSHZ
+
+# Make sure ZSHZ_EXCLUDE_DIRS has been declared so that other scripts can
+# simply append to it
+(( ${+ZSHZ_EXCLUDE_DIRS} )) || typeset -gUa ZSHZ_EXCLUDE_DIRS
 
 # Determine if zsystem flock is available
 zsystem supports flock &> /dev/null && ZSHZ[USE_FLOCK]=1
@@ -134,7 +136,7 @@ is-at-least 5.3.0 && ZSHZ[PRINTV]=1
 zshz() {
 
   # Don't use `emulate -L zsh' - it breaks PUSHD_IGNORE_DUPS
-  setopt LOCAL_OPTIONS NO_KSH_ARRAYS NO_SH_WORD_SPLIT
+  setopt LOCAL_OPTIONS NO_KSH_ARRAYS NO_SH_WORD_SPLIT EXTENDED_GLOB
   (( ZSHZ_DEBUG )) && setopt LOCAL_OPTIONS WARN_CREATE_GLOBAL
 
   local REPLY
@@ -160,6 +162,8 @@ zshz() {
 
   # Load the datafile into an array and parse it
   lines=( ${(f)"$(< $datafile)"} )
+  # Discard entries that are incomplete or incorrectly formatted
+  lines=( ${(M)lines:#/*\|[[:digit:]]##[.,]#[[:digit:]]#\|[[:digit:]]##} )
 
   ############################################################
   # Add a path to or remove one from the datafile
@@ -229,7 +233,7 @@ zshz() {
     owner=${ZSHZ_OWNER:-${_Z_OWNER}}
 
     if (( ZSHZ[USE_FLOCK] )); then
-      zf_mv "$tempfile" "$datafile" || zf_rm -f "$tempfile"
+      zf_mv "$tempfile" "$datafile" 2> /dev/null || zf_rm -f "$tempfile"
 
       if [[ -n $owner ]]; then
         zf_chown ${owner}:"$(id -ng ${owner})" "$datafile"
@@ -338,7 +342,7 @@ zshz() {
   ############################################################
   _zshz_legacy_complete() {
 
-    local line path_field
+    local line path_field path_field_normalized
 
     # Replace spaces in the search string with asterisks for globbing
     1=${1//[[:space:]]/*}
@@ -347,11 +351,16 @@ zshz() {
 
       path_field=${line%%\|*}
 
+      path_field_normalized=$path_field
+      if (( ZSHZ_TRAILING_SLASH )); then
+        path_field_normalized=${path_field%/}/
+      fi
+
       # If the search string is all lowercase, the search will be case-insensitive
-      if [[ $1 == "${1:l}" && ${path_field:l} == *${~1}* ]]; then
+      if [[ $1 == "${1:l}" && ${path_field_normalized:l} == *${~1}* ]]; then
         print -- $path_field
       # Otherwise, case-sensitive
-      elif [[ $path_field == *${~1}* ]]; then
+      elif [[ $path_field_normalized == *${~1}* ]]; then
         print -- $path_field
       fi
 
@@ -382,8 +391,22 @@ zshz() {
   #   Options and parameters for `print'
   ############################################################
   _zshz_printv() {
+    # NOTE: For a long time, ZSH's `print -v' had a tendency
+    # to mangle multibyte strings:
+    #
+    #   https://www.zsh.org/mla/workers/2020/msg00307.html
+    #
+    # The bug was fixed in late 2020:
+    #
+    #   https://github.com/zsh-users/zsh/commit/b6ba74cd4eaec2b6cb515748cf1b74a19133d4a4#diff-32bbef18e126b837c87b06f11bfc61fafdaa0ed99fcb009ec53f4767e246b129
+    #
+    # In order to support shells with the bug, we must use a form of `printf`,
+    # which does not exhibit the undesired behavior. See
+    #
+    #   https://www.zsh.org/mla/workers/2020/msg00308.html
+
     if (( ZSHZ[PRINTV] )); then
-      builtin print -v REPLY $@
+      builtin print -v REPLY -f %s $@
     else
       builtin print -z $@
       builtin read -rz REPLY
@@ -460,15 +483,20 @@ zshz() {
         ;;
 
       list)
+        local path_to_display
         for x in ${(k)output_matches}; do
           if (( ${output_matches[$x]} )); then
-            _zshz_printv -f "%-10d %s\n" ${output_matches[$x]} $x
+            path_to_display=$x
+            (( ZSHZ_TILDE )) &&
+              path_to_display=${path_to_display/#${HOME}/\~}
+            _zshz_printv -f "%-10d %s\n" ${output_matches[$x]} $path_to_display
             output+=( ${(f)REPLY} )
             REPLY=''
           fi
         done
         if [[ -n $common ]]; then
-          (( $#output > 1 )) && printf "%-10s%s\n" 'common:' $common
+          (( ZSHZ_TILDE )) && common=${common/#${HOME}/\~}
+          (( $#output > 1 )) && printf "%-10s %s\n" 'common:' $common
         fi
         # -lt
         if (( $+opts[-t] )); then
@@ -499,9 +527,9 @@ zshz() {
   }
 
   ############################################################
-  # Load the datafile, and match a pattern by rank, time, or a
-  # combination of the two, and output the results as
-  # completions, a list, or a best match.
+  # Match a pattern by rank, time, or a combination of the
+  # two, and output the results as completions, a list, or a
+  # best match.
   #
   # Globals:
   #   ZSHZ
@@ -521,7 +549,7 @@ zshz() {
     local fnd=$1 method=$2 format=$3
 
     local -a existing_paths
-    local line dir path_field rank_field time_field rank dx
+    local line dir path_field rank_field time_field rank dx escaped_path_field
     local -A matches imatches
     local best_match ibest_match hi_rank=-9999999999 ihi_rank=-9999999999
 
@@ -559,6 +587,12 @@ zshz() {
       # Use spaces as wildcards
       local q=${fnd//[[:space:]]/\*}
 
+      # If $ZSHZ_TRAILING_SLASH is set, use path_field with a trailing slash for matching.
+      local path_field_normalized=$path_field
+      if (( ZSHZ_TRAILING_SLASH )); then
+        path_field_normalized=${path_field%/}/
+      fi
+
       # If $ZSHZ_CASE is 'ignore', be case-insensitive.
       #
       # If it's 'smart', be case-insensitive unless the string to be matched
@@ -567,22 +601,31 @@ zshz() {
       # Otherwise, the default behavior of ZSH-z is to match case-sensitively if
       # possible, then to fall back on a case-insensitive match if possible.
       if [[ $ZSHZ_CASE == 'smart' && ${1:l} == $1 &&
-            ${path_field:l} == ${~q:l} ]]; then
+            ${path_field_normalized:l} == ${~q:l} ]]; then
         imatches[$path_field]=$rank
-      elif [[ $ZSHZ_CASE != 'ignore' && $path_field == ${~q} ]]; then
+      elif [[ $ZSHZ_CASE != 'ignore' && $path_field_normalized == ${~q} ]]; then
         matches[$path_field]=$rank
-      elif [[ $ZSHZ_CASE != 'smart' && ${path_field:l} == ${~q:l} ]]; then
+      elif [[ $ZSHZ_CASE != 'smart' && ${path_field_normalized:l} == ${~q:l} ]]; then
         imatches[$path_field]=$rank
       fi
 
-      if (( matches[$path_field] )) &&
-         (( matches[$path_field] > hi_rank )); then
+      # Escape characters that would cause "invalid subscript" errors
+      # when accessing the associative array.
+      escaped_path_field=${path_field//'\'/'\\'}
+      escaped_path_field=${escaped_path_field//'`'/'\`'}
+      escaped_path_field=${escaped_path_field//'('/'\('}
+      escaped_path_field=${escaped_path_field//')'/'\)'}
+      escaped_path_field=${escaped_path_field//'['/'\['}
+      escaped_path_field=${escaped_path_field//']'/'\]'}
+
+      if (( matches[$escaped_path_field] )) &&
+         (( matches[$escaped_path_field] > hi_rank )); then
         best_match=$path_field
-        hi_rank=${matches[$path_field]}
-      elif (( imatches[$path_field] )) &&
-           (( imatches[$path_field] > ihi_rank )); then
+        hi_rank=${matches[$escaped_path_field]}
+      elif (( imatches[$escaped_path_field] )) &&
+           (( imatches[$escaped_path_field] > ihi_rank )); then
         ibest_match=$path_field
-        ihi_rank=${imatches[$path_field]}
+        ihi_rank=${imatches[$escaped_path_field]}
         ZSHZ[CASE_INSENSITIVE]=1
       fi
     done
@@ -657,8 +700,24 @@ zshz() {
     [[ $output_format != 'completion' ]] && output_format='list'
   }
 
+  #########################################################
+  # If $ZSHZ_ECHO == 1, display paths as you jump to them.
+  # If it is also the case that $ZSHZ_TILDE == 1, display
+  # the home directory as a tilde.
+  #########################################################
+  _zshz_echo() {
+    if (( ZSHZ_ECHO )); then
+      if (( ZSHZ_TILDE )); then
+        print ${PWD/#${HOME}/\~}
+      else
+        print $PWD
+      fi
+    fi
+  }
+
   if [[ ${@: -1} == /* ]] && (( ! $+opts[-e] && ! $+opts[-l] )); then
-    [[ -d ${@: -1} ]] && builtin cd ${@: -1} && return
+    # cd if possible; echo the new path if $ZSHZ_ECHO == 1
+    [[ -d ${@: -1} ]] && builtin cd ${@: -1} && _zshz_echo && return
   fi
 
   # With option -c, make sure query string matches beginning of matches;
@@ -685,6 +744,7 @@ zshz() {
 
       # In the search pattern, replace spaces with *
       local q=${fnd//[[:space:]]/\*}
+      q=${q%/} # Trailing slash has to be removed
 
       # As long as the best match is not case-insensitive
       if (( ! ZSHZ[CASE_INSENSITIVE] )); then
@@ -710,14 +770,16 @@ zshz() {
 
   if (( ret2 == 0 )) && [[ -n $cd ]]; then
     if (( $+opts[-e] )); then               # echo
+      (( ZSHZ_TILDE )) && cd=${cd/#${HOME}/\~}
       print -- "$cd"
     else
-      [[ -d $cd ]] && builtin cd "$cd"
+      # cd if possible; echo the new path if $ZSHZ_ECHO == 1
+      [[ -d $cd ]] && builtin cd "$cd" && _zshz_echo
     fi
   else
-    # if $req is a valid path, cd to it
+    # if $req is a valid path, cd to it; echo the new path if $ZSHZ_ECHO == 1
     if ! (( $+opts[-e] || $+opts[-l] )) && [[ -d $req ]]; then
-      builtin cd "$req"
+      builtin cd "$req" && _zshz_echo
     else
       return $ret2
     fi
@@ -853,4 +915,4 @@ zsh-z_plugin_unload() {
   unfunction $0
 }
 
-# vim: fdm=indent:ts=2:et:sts=2:sw=2:
+# vim: fdm=indent:ts=2:et:sts=2:sw=2:s
