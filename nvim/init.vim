@@ -230,6 +230,8 @@ if has("nvim")
   Plug 'hoob3rt/lualine.nvim'
   Plug 'ThePrimeagen/vim-be-good'
 
+  " Comment
+  Plug 'numToStr/Comment.nvim'
   " Emmet
   Plug 'mattn/emmet-vim'
   Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -250,6 +252,7 @@ endif
 
 call plug#end()
 
+lua require('Comment').setup()
 ""-------------------------------------------------------------------------------
 " Color scheme
 "-------------------------------------------------------------------------------
