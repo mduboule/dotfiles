@@ -232,7 +232,10 @@ if has("nvim")
   " Emmet
   Plug 'mattn/emmet-vim'
   Plug 'tmux-plugins/vim-tmux-focus-events'
+  " Autopairs
+  Plug 'windwp/nvim-autopairs'
 
+  " lsp / treesitter
   Plug 'neovim/nvim-lspconfig'
   Plug 'glepnir/lspsaga.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSupdate'}
@@ -241,7 +244,7 @@ if has("nvim")
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
 
-  " Telescope fuzzy finder
+  " Telescope
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
   " Plug 'nvim-telescope/telescope-fzy-native.nvim'
@@ -250,6 +253,8 @@ endif
 call plug#end()
 
 lua require('Comment').setup()
+lua require('nvim-autopairs').setup{}
+
 ""-------------------------------------------------------------------------------
 " Color scheme
 "-------------------------------------------------------------------------------
@@ -282,8 +287,8 @@ function! <SID>TrimWhitespace()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
   endif
-endfun
 
+endfun
 augroup GROUP_FUNCTIONMARIUS
  autocmd!
  autocmd BufWritePre * :call <SID>TrimWhitespace()
