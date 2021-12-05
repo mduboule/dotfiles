@@ -188,9 +188,6 @@ nmap <leader>gs :G<CR>
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
 
-" Make Y behave like C or D, till the end of the line
-nnoremap Y yg_
-
 " Keep focus in the center
 nnoremap n nzzzv
 nnoremap N Nzzzv
