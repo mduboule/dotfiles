@@ -3,6 +3,9 @@
 
 !.gitignore
 
+!bin/
+!yabai/
+!skhd/
 !nvim/
 !shellconfig/
 
