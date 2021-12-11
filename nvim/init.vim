@@ -71,8 +71,8 @@ set cursorline
 "set cursorcolumn
 
 " Set cursor line color on visual mode
-highlight Visual cterm=NONE ctermbg=236 ctermfg=NONE guibg=Grey40
-highlight LineNr cterm=none ctermfg=240 guifg=#2b506e guibg=#000000
+" highlight Visual cterm=NONE ctermbg=236 ctermfg=NONE guibg=Grey40
+" highlight LineNr cterm=none ctermfg=240 guifg=#2b506e guibg=#000000
 
 augroup BgHighlight
   autocmd!
@@ -262,12 +262,12 @@ lua require('nvim-autopairs').setup{}
 if exists("&termguicolors") && exists("&winblend")
   syntax enable
   set termguicolors
-  set winblend=0
+  set winblend=0 " sets transparency for floating windows
   set wildoptions=pum
-  set pumblend=5
+  set pumblend=5 " sets pseudo-transparency for popup-menu
   set background=dark
-  let g:neosolarized_contrast = "high"
-  let g:neosolarized_vertSplitBgTrans = 1
+  " let g:neosolarized_contrast = "high"
+  " let g:neosolarized_vertSplitBgTrans = 1
   let g:neosolarized_termtrans=1
   runtime ./colors/NeoSolarized.vim
   colorscheme NeoSolarized
