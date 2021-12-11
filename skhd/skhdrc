@@ -1,0 +1,37 @@
+## Quickly restart the yabai launch agent
+ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+
+# balance size of windows
+shift + alt - 0 : yabai -m space --balance
+
+# create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
+hyper - n : yabai -m space --create && \
+            index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+            yabai -m window --space "${index}" && \
+            yabai -m space --focus "${index}"
+
+# This is the magic sauce:
+# fast focus desktop
+ctrl - a : yabai -m space --focus $(yabai -m query --displays --display | jq -r '.spaces[0]')
+ctrl - s : yabai -m space --focus $(yabai -m query --displays --display | jq -r '.spaces[1]')
+ctrl - d : yabai -m space --focus $(yabai -m query --displays --display | jq -r '.spaces[2]')
+ctrl - f : yabai -m space --focus $(yabai -m query --displays --display | jq -r '.spaces[3]')
+ctrl - u : yabai -m space --focus $(yabai -m query --displays --display | jq -r '.spaces[4]')
+
+# focus window
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+
+# send window to desktop and follow focus
+shift + cmd - z : yabai -m window --space next; yabai -m space --focus next
+shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
+
+# Toggle foucus on a stack
+# This is cool but I rarely use if
+ctrl - return : yabai -m window --focus stack.next || yabai -m window --focus stack.first
+
+# This goes together with the previous commmand
+# Create a stack (new window onto current window)
+ctrl - 0 : window=$(yabai -m query --windows --window | jq -r '.id') && yabai -m window east --stack $window || (yabai -m window $window --toggle float && yabai -m window $window --toggle float)
