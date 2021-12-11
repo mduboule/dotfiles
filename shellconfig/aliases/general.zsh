@@ -3,6 +3,7 @@ alias {vi,vim,nvim}='/usr/local/bin/nvim'
 alias sz='source ~/.config/.zshrc'
 alias ez='nvim ~/.config/.zshrc'
 
+alias c=clear
 alias md=mkdir
 alias rd=rmdir
 alias ls='ls -G -p'
