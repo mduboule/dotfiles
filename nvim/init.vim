@@ -199,14 +199,6 @@ inoremap , ,<c-g>u
 inoremap ! !<c-g>u
 inoremap ? ?<c-g>u
 
-" Surround visual selection with one of those
-vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>
-vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>
-vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>
-vnoremap <leader>( <esc>`>a)<esc>`<i(<esc>
-vnoremap <leader>[ <esc>`>a]<esc>`<i[<esc>
-vnoremap <leader>{ <esc>`>a}<esc>`<i{<esc>
-
 " Replace multiple occurences of a word.
 " Enter cn (or cN) anywhere on top of a word. Enter new word,
 " escape and use . as many times as needed.
@@ -245,8 +237,8 @@ if has("nvim")
 
   " Telescope
   Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope-fzy-native.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
-  " Plug 'nvim-telescope/telescope-fzy-native.nvim'
 endif
 
 call plug#end()
