@@ -231,7 +231,6 @@ if has("nvim")
   Plug 'numToStr/Comment.nvim'
   " Emmet
   Plug 'mattn/emmet-vim'
-  Plug 'tmux-plugins/vim-tmux-focus-events'
   " Autopairs
   Plug 'windwp/nvim-autopairs'
 
