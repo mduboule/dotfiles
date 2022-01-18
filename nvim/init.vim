@@ -17,6 +17,7 @@ if has('nvim')
 endif
 
 set number
+set relativenumber
 set nocompatible
 syntax enable
 set background=dark
