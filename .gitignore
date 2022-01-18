@@ -1,14 +1,11 @@
-/*
+/* Mac files */
+.DS_Store
 *.swp
 
-!.gitignore
+/* no idea what this is */
+configStore
 
-!bin/
-!yabai/
-!skhd/
-!nvim/
-!shellconfig/
-
+toggl-cli/
 shellconfig/z/.z
 nvim/.netrwhist
 
