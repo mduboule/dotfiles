@@ -18,6 +18,7 @@ endif
 
 set number
 set relativenumber
+set clipboard=unnamed
 set nocompatible
 syntax enable
 set background=dark
@@ -58,7 +59,7 @@ set synmaxcol=128
 syntax sync minlines=256
 set nocursorcolumn
 set nocursorline
-set norelativenumber
+" set norelativenumber
 
 " This – along autoread is aiming at realoading a file
 " after it was changed outside of vim.
@@ -72,8 +73,8 @@ set cursorline
 "set cursorcolumn
 
 " Set cursor line color on visual mode
-" highlight Visual cterm=NONE ctermbg=236 ctermfg=NONE guibg=Grey40
-" highlight LineNr cterm=none ctermfg=240 guifg=#2b506e guibg=#000000
+highlight Visual cterm=NONE ctermbg=236 ctermfg=NONE guibg=Grey40
+highlight LineNr cterm=none ctermfg=240 guifg=#2b506e guibg=#000000
 
 augroup BgHighlight
   autocmd!
@@ -241,6 +242,8 @@ if has("nvim")
   Plug 'nvim-telescope/telescope-fzy-native.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
 endif
+
+Plug 'groenewege/vim-less', { 'for': 'less' }
 
 call plug#end()
 
