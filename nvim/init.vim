@@ -223,16 +223,26 @@ if has("nvim")
 
   " Comment
   Plug 'numToStr/Comment.nvim'
+
   " Emmet
   Plug 'mattn/emmet-vim'
+
   " Autopairs
   Plug 'windwp/nvim-autopairs'
 
   " lsp / treesitter
   Plug 'neovim/nvim-lspconfig'
-  Plug 'glepnir/lspsaga.nvim'
+  Plug 'tami5/lspsaga.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSupdate'}
-  Plug 'nvim-lua/completion-nvim'
+
+  " autocompletion
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/nvim-cmp'
+
+  " filer
+  Plug 'kristijanhusak/defx-git'
+  Plug 'kristijanhusak/defx-icons'
+  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
