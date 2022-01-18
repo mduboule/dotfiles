@@ -1,6 +1,9 @@
 #!/usr/bin/env sh
 #YABAI STUFF
 
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
 # My custom space names for my 3 monitor setup. These names are used in some of my scripts.
 yabai -m space 1 --label browser
 yabai -m space 2 --label terminal
@@ -13,7 +16,7 @@ yabai -m space 6 --label six
 yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Karabiner-Elements$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Karabiner-EventViewer$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Finder$" sticky=on lyer=above manage=off
+yabai -m rule --add app="^Finder$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Alfred Preferences$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
 yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
@@ -34,14 +37,14 @@ yabai -m config window_placement second_child
 yabai -m config window_topmost off
 #yabai -m config window_shadow float
 yabai -m config window_opacity off
-yabai -m config window_opacity_duration 0.00
+# yabai -m config window_opacity_duration 0.00 # this runs into an error with Monterey as of 01/2022
 yabai -m config active_window_opacity 1.0
 #yabai -m config normal_window_opacity        0.97
 #yabai -m config window_border                on | off
 
 ## WTIH SIP DISABLED (Limelight build into Yabai, enable it here)
 yabai -m config window_border off
-yabai -m config window_border_width 0
+# yabai -m config window_border_width 0 # this runs into an error with Monterey as of 01/2022
 yabai -m config active_window_border_color 0xddBF00FF
 yabai -m config normal_window_border_color 0x00FFFFFF
 yabai -m config insert_feedback_color        0xffd75f5f
@@ -71,3 +74,5 @@ yabai -m config window_gap 0
 echo "Yabai configuration loaded"
 #END
 
+# Download and autoupdate yabai on when yabai starts
+YABAI_CERT=yabai-cert sh -c "$(curl -fsSL "https://git.io/update-yabai")" &
