@@ -233,11 +233,15 @@ if has("nvim")
   " lsp / treesitter
   Plug 'neovim/nvim-lspconfig'
   Plug 'tami5/lspsaga.nvim'
+  Plug 'folke/lsp-colors.nvim'
+  Plug 'onsails/lspkind-nvim'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSupdate'}
 
-  " autocompletion
+  " Autocompletion
   Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/nvim-cmp'
+  Plug 'L3MON4D3/LuaSnip'
 
   " filer
   Plug 'kristijanhusak/defx-git'
