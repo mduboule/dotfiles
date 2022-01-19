@@ -170,6 +170,12 @@ nmap te :tabedit<Return>
 nmap <S-Tab> :tabprev<Return>
 nmap <Tab> :tabnext<Return>
 
+" since <Tab> === <C-i> we need to find a new solution
+" for the jump list. And also, put them in the right order
+" while we're at it.
+nnoremap <leader>o <C-i>
+nnoremap <leader>i <C-o>
+
 " Probably something cool
 " nnoremap <C-k> :cnext<CR>zz
 " nnoremap <C-j> :cprev<CR>zz
