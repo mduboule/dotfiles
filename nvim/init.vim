@@ -158,13 +158,10 @@ nmap ss :split<Return><C-w>w
 nmap vs :vsplit<Return><C-w>w
 
 " Navigate between windows
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" Quick file explorer
-nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap sh <C-w>h
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
 
 " Open new tabs
 nmap te :tabedit<Return>
