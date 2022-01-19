@@ -220,20 +220,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 
 if has("nvim")
-  Plug 'psliwka/vim-smoothie'
+  " Editing
   Plug 'hoob3rt/lualine.nvim'
-  Plug 'ThePrimeagen/vim-be-good'
-
-  " Comment
+  Plug 'psliwka/vim-smoothie'
   Plug 'numToStr/Comment.nvim'
-
-  " Emmet
   Plug 'mattn/emmet-vim'
-
-  " Autopairs
   Plug 'windwp/nvim-autopairs'
 
-  " lsp / treesitter
+  " Lsp / treesitter
   Plug 'neovim/nvim-lspconfig'
   Plug 'tami5/lspsaga.nvim'
   Plug 'folke/lsp-colors.nvim'
@@ -246,15 +240,14 @@ if has("nvim")
   Plug 'hrsh7th/nvim-cmp'
   Plug 'L3MON4D3/LuaSnip'
 
-  " filer
+  " Filer
   Plug 'kristijanhusak/defx-git'
   Plug 'kristijanhusak/defx-icons'
   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 
+  " Telescope
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
-
-  " Telescope
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzy-native.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
@@ -285,9 +278,8 @@ if exists("&termguicolors") && exists("&winblend")
   runtime ./colors/NeoSolarized.vim
   colorscheme NeoSolarized
 endif
-" highlight Normal guibg=none
 
-""-------------------------------------------------------------------------------
+"-------------------------------------------------------------------------------
 " Misc
 "-------------------------------------------------------------------------------
 
@@ -299,8 +291,8 @@ function! <SID>TrimWhitespace()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
   endif
-
 endfun
+
 augroup GROUP_FUNCTIONMARIUS
  autocmd!
  autocmd BufWritePre * :call <SID>TrimWhitespace()
