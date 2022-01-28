@@ -245,6 +245,7 @@ if has("nvim")
   Plug 'numToStr/Comment.nvim'
   Plug 'mattn/emmet-vim'
   Plug 'windwp/nvim-autopairs'
+  " Plug 'f-person/git-blame.nvim'
 
   " Lsp / treesitter
   Plug 'neovim/nvim-lspconfig'
