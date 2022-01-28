@@ -156,8 +156,21 @@ map <leader>u <C-u>
 
 " Switch to last opened buffer
 nnoremap <C-minus> :e #<CR>
+
 " Select all
 nmap <leader>a gg<S-v>G
+
+" Let's try this again
+inoremap jk <Esc>
+inoremap kj <Esc>
+
+" Why is it backward
+nnoremap << >>
+nnoremap >> <<
+
+" Also this is cool… I think?
+vnoremap < >gv
+vnoremap > <gv
 
 " Split window
 nmap ss :split<Return><C-w>w
