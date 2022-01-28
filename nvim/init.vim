@@ -139,9 +139,15 @@ set suffixesadd=.js,.es,.jsx,.json,.css,.scss,.less,.sass,.styl,.php,.py,.md
 "-------------------------------------------------------------------------------
 
 " let mapleader = "é"
-let mapleader = " "
 
+let mapleader = " "
 map <leader><CR> :so ~/.config/nvim/init.vim<CR>
+
+" Use Command + S (<D-s>) to save. Requires <D-s> to
+" fire <C-z> inside the terminal as an intermediate command.
+" https://stackoverflow.com/a/63458243
+noremap  <silent> <C-z> :w<CR>
+inoremap  <silent> <C-z> <ESC>:w<CR>i
 
 map <leader>f <PageDown>
 map <leader>b <PageUp>
