@@ -154,9 +154,6 @@ map <leader>b <PageUp>
 map <leader>d <C-d>
 map <leader>u <C-u>
 
-" Switch to last opened buffer
-nnoremap <C-minus> :e #<CR>
-
 " Select all
 nmap <leader>a gg<S-v>G
 
@@ -167,7 +164,6 @@ inoremap kj <Esc>
 " Why is it backward
 nnoremap << >>
 nnoremap >> <<
-
 " Also this is cool… I think?
 vnoremap < >gv
 vnoremap > <gv
@@ -195,9 +191,9 @@ nmap <Tab> :tabnext<Return>
 nnoremap <leader>o <C-i>
 nnoremap <leader>i <C-o>
 
-" Probably something cool
-" nnoremap <C-k> :cnext<CR>zz
-" nnoremap <C-j> :cprev<CR>zz
+" Navigate in quickfix lists
+nnoremap <C-h> :cnext<CR>zz
+nnoremap <C-l> :cprev<CR>zz
 
 " Move group of lines in all modes
 vnoremap J :move '>+1<CR>gv=gv
