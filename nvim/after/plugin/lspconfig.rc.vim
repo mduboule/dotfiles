@@ -2,7 +2,6 @@ if !exists('g:lspconfig')
   finish
 endif
 lua << EOF
-
   -- vim.lsp.set_log_level("debug")
 EOF
 
@@ -92,9 +91,13 @@ nvim_lsp.tsserver.setup {
   capabilities = capabilities
 }
 
-nvim_lsp.tailwindcss.setup{}
+nvim_lsp.tailwindcss.setup{
+  capabilities = capabilities
+}
 
-nvim_lsp.theme_check.setup{}
+nvim_lsp.theme_check.setup{
+  capabilities = capabilities
+}
 
 nvim_lsp.diagnosticls.setup {
   on_attach = on_attach,
