@@ -261,6 +261,8 @@ if has("nvim")
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/nvim-cmp'
   Plug 'L3MON4D3/LuaSnip'
+  Plug 'saadparwaiz1/cmp_luasnip'
+  Plug 'rafamadriz/friendly-snippets'
 
   " Filer
   Plug 'kristijanhusak/defx-git'
@@ -274,6 +276,10 @@ if has("nvim")
   Plug 'nvim-telescope/telescope-fzy-native.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
 endif
+
+lua << EOF
+  vim.g.snippets = "luasnip"
+EOF
 
 Plug 'groenewege/vim-less', { 'for': 'less' }
 
