@@ -192,8 +192,8 @@ nnoremap <leader>o <C-i>
 nnoremap <leader>i <C-o>
 
 " Navigate in quickfix lists
-nnoremap <C-h> :cnext<CR>zz
-nnoremap <C-l> :cprev<CR>zz
+nnoremap <C-h> :cprev<CR>zz
+nnoremap <C-l> :cnext<CR>zz
 
 " Move group of lines in all modes
 vnoremap J :move '>+1<CR>gv=gv
@@ -257,9 +257,10 @@ if has("nvim")
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSupdate'}
 
   " Autocompletion
-  Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'L3MON4D3/LuaSnip'
   Plug 'saadparwaiz1/cmp_luasnip'
   Plug 'rafamadriz/friendly-snippets'
