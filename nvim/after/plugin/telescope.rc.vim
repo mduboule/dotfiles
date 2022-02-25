@@ -1,11 +1,15 @@
 if !exists('g:loaded_telescope') | finish | endif
 
 " search a file
-nnoremap <leader>tp <cmd>lua require'telescope.builtin'.git_files{}<CR>
+nnoremap <leader>tp <cmd>Telescope git_files<CR>
 " search a buffer
 nnoremap <leader>tb <cmd>Telescope buffers<CR>
 " grep search
 nnoremap <leader>tg <cmd>Telescope live_grep<CR>
+" list all commands
+nnoremap <leader>tc <cmd>Telescope commands<CR>
+" fuzzy find over current buffer
+nnoremap <leader>tf <cmd>Telescope current_buffer_fuzzy_find<CR>
 " search config files
 nnoremap <leader>t. <cmd>lua require'telescope.builtin'.find_files{ cwd = "~/.config/", prompt_title="Search in config files" }<CR>
 " experimental… include hidden files
