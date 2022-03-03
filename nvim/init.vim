@@ -241,6 +241,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 
 if has("nvim")
+  " Git
+  Plug 'ThePrimeagen/git-worktree.nvim'
+  " Plug 'f-person/git-blame.nvim'
+
   " Editing
   Plug 'hoob3rt/lualine.nvim'
   Plug 'psliwka/vim-smoothie'
@@ -287,8 +291,9 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 
 call plug#end()
 
+lua require('git-worktree').setup()
 lua require('Comment').setup()
-lua require('nvim-autopairs').setup{}
+lua require('nvim-autopairs').setup()
 
 ""-------------------------------------------------------------------------------
 " Color scheme

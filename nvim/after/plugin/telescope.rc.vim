@@ -16,6 +16,10 @@ nnoremap <leader>t. <cmd>lua require'telescope.builtin'.find_files{ cwd = "~/.co
 nnoremap <leader>q <cmd>lua require'telescope.builtin'.find_files{ find_command = { "rg", "-i", "--hidden", "--files", "-g", "!.git" } }<CR>
 " experimental… grep all files
 nnoremap <leader>ta <cmd>lua require'telescope.builtin'.find_files({ vimgrep_arguments = { 'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case' }, prompt_title = "Find All Files" })<CR>
+" worktree: switch and delete (<c-f> ?) worktrees
+nnoremap <leader>ww <cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>
+" worktree: create a worktree
+nnoremap <leader>wa <cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>
 
 lua << EOF
   local actions = require('telescope.actions')
@@ -37,6 +41,9 @@ lua << EOF
       }
     },
   }
+
+  require("telescope").load_extension("git_worktree")
+  require("telescope").load_extension("fzy_native")
 
   local M = {}
 
