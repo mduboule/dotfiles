@@ -42,6 +42,7 @@ ls.filetype_extend("liquid", { "liquid" })
 ls.snippets = {
   all = {
     ls.parser.parse_snippet("cl", "console.log(\"$TM_FILENAME# \", $1)"),
+    ls.parser.parse_snippet("ct", "console.table(\"$TM_FILENAME# \", $1)"),
   },
 
   lua = {
