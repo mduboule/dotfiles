@@ -161,12 +161,17 @@ nmap <leader>a gg<S-v>G
 inoremap jk <Esc>
 inoremap kj <Esc>
 
+" Navigate between tabs
+" nmap <S-Tab> :tabprev<Return>
+" nmap <Tab> :tabnext<Return>
+
 " Why is it backward
-nnoremap << >>
-nnoremap >> <<
+nnoremap <Tab> >>
+nnoremap <S-Tab> <<
+
 " Also this is cool… I think?
-vnoremap < >gv
-vnoremap > <gv
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 " Split window
 nmap ss :split<Return><C-w>w
@@ -181,9 +186,6 @@ nnoremap sl <C-w>l
 " Open new tabs
 nmap te :tabedit<Return>
 
-" Navigate between tabs
-nmap <S-Tab> :tabprev<Return>
-nmap <Tab> :tabnext<Return>
 
 " since <Tab> === <C-i> we need to find a new solution
 " for the jump list. And also, put them in the right order
