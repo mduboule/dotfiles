@@ -43,7 +43,7 @@ if [ "$is_new_session" = true ] ; then
     split-window -h \; \
     send-keys -t $1:1.0 "z $1 && clear" C-m \; \
     send-keys -t $1:1.1 "z $1 && clear" C-m \; \
-    send-keys -t $1:2.0 "z $1 && clear && vi ." C-m \; \
+    send-keys -t $1:2.0 "z $1 && clear && vi" C-m \; \
     send-keys -t $1:3.0 "z $1 && clear" C-m \; \
     send-keys -t $1:3.1 "z $1 && clear" C-m \; \
     switch-client -t $1:1 \; \
@@ -59,7 +59,7 @@ else
   tmux split-window -h -t $1:3
   tmux send-keys -t $1:1.0 "z $1 && clear" C-m
   tmux send-keys -t $1:1.1 "z $1 && clear" C-m
-  tmux send-keys -t $1:2.0 "z $1 && clear && vi ." C-m
+  tmux send-keys -t $1:2.0 "z $1 && clear && vi" C-m
   tmux send-keys -t $1:3.0 "z $1 && clear" C-m
   tmux send-keys -t $1:3.1 "z $1 && clear" C-m
   tmux switch-client -t $1:1
