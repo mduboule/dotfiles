@@ -19,9 +19,15 @@
                         "manipulators": [
                             {
                                 "description": "Caps lock to control, or escape if alone",
-                                "from": { "key_code": "caps_lock" },
-                                "to": { "key_code": "left_control"},
-                                "to_if_alone": {"key_code": "escape"},
+                                "from": {
+                                    "key_code": "caps_lock"
+                                },
+                                "to": {
+                                    "key_code": "left_control"
+                                },
+                                "to_if_alone": {
+                                    "key_code": "escape"
+                                },
                                 "type": "basic"
                             }
                         ]

@@ -4,13 +4,17 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 local cmp = require'cmp'
 local lspkind = require'lspkind'
 
-cmp.setup {
+cmp.setup({
+
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
     end,
   },
-  mapping = {
+
+  mapping = cmp.mapping.preset.cmdline({
+    ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+    ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     -- ['<C-e>'] = cmp.mapping.complete(),
@@ -21,6 +25,7 @@ cmp.setup {
       },
       { "i", "c" }
     ),
+
     -- from @tjdevries
     ["<c-y>"] = cmp.mapping {
       i = cmp.mapping.complete(),
@@ -40,13 +45,15 @@ cmp.setup {
     --   behavior = cmp.ConfirmBehavior.Insert,
     --   select = true
     -- }),
-  },
-  sources = {
+  }),
+
+  sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "path" },
     { name = "luasnip" },
     { name = "buffer", keyword_length = 3 },
-  },
+  }),
+
   formatting = {
     format = lspkind.cmp_format {
       menu = {
@@ -57,12 +64,8 @@ cmp.setup {
         },
       with_text = true
     }
-  },
-  experimental = {
-    native_menu = false,
-    ghost_text = false
   }
-}
 
+})
 
 vim.cmd [[highlight! default link CmpItemKind CmpItemMenuDefault]]

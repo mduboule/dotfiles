@@ -41,8 +41,9 @@ ls.filetype_extend("liquid", { "liquid" })
 
 ls.snippets = {
   all = {
-    ls.parser.parse_snippet("cl", "console.log(\"$TM_FILENAME# \", $1)"),
-    ls.parser.parse_snippet("ct", "console.table(\"$TM_FILENAME# \", $1)"),
+    ls.parser.parse_snippet("red", "* { color: red !important; }"),
+    ls.parser.parse_snippet("cl", "console.log(\'$TM_FILENAME#$TM_LINE_NUMBER \', $1)"),
+    ls.parser.parse_snippet("ct", "console.table(\'$TM_FILENAME#$TM_LINE_NUMBER \', $1)"),
   },
 
   lua = {
@@ -51,7 +52,8 @@ ls.snippets = {
 }
 
 require("luasnip.loaders.from_vscode").load({ include = { "liquid" } }) -- Load only liquid snippets
-require("luasnip.loaders.from_vscode").load({ paths = { "./snippets" } }) -- Load snippets from snippets folder
+require("luasnip.loaders.from_vscode").load({ include = { "javascript" } }) -- Load only liquid snippets
+-- require("luasnip.loaders.from_vscode").load({ paths = { "./snippets" } }) -- Load snippets from snippets folder
 --
 -- -- require("luasnip.loaders.from_vscode").load()
 
@@ -75,5 +77,5 @@ vim.keymap.set({ "i", "s" }, "<c-B>", function()
   end
 end, { silent = true })
 
--- @tjdevries: horcut to source my luasnips file again, which will reload my snippets
+-- @tjdevries: shorcut to source my luasnips file again, which will reload my snippets
 vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR><cmd>echo 'reload snippets'<CR>")
