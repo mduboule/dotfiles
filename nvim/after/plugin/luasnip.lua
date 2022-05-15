@@ -5,65 +5,60 @@ end
 local ls = require "luasnip"
 local types = require "luasnip.util.types"
 
+-- Load lua snippets
+require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
+
 ls.config.set_config {
-  -- This tells LuaSnip to remember to keep around the last snippet.
-  -- You can jump back into it even if you move outside of the selection
-  history = true,
-
-  -- This one is cool cause if you have dynamic snippets, it updates as you type!
-  updateevents = "TextChanged,TextChangedI",
-
-  -- Autosnippets:
   enable_autosnippets = true,
+  history = true, -- keep around the last snippet local to jump back
+  updateevents = "TextChanged,TextChangedI", -- update changes as you type
 
-  -- Crazy highlights!!
-  -- #vid3
-  -- ext_opts = nil,
   ext_opts = {
+    -- some highlights
     [types.choiceNode] = {
       active = {
         virt_text = { { "<-", "Error" } },
       },
     },
+    -- tag a choice node
+    [require("luasnip.util.types").choiceNode] = {
+      active = {
+        virt_text = { { "●", "base00" } },
+      }
+    }
   },
 }
 
--- Insert Node
---  Creates a location for the cursor to jump to.
---      Possible options to jump to are 1 - N
---      If you use 0, that's the final place to jump to.
+-- create snippet
+-- s(context, nodes, condition, ...)
+-- local snippet = ls.s
+-- local events = require "luasnip.util.events"
+
+require("luasnip.loaders.from_vscode").load({"./snippets"}) -- Load snippets from snippets folder
+-- ls.snippets = {
+
+--   all = {
+--     ls.parser.parse_snippet("red", "* { color: red !important; }"),
+--     ls.parser.parse_snippet("cl", "console.log(\'$TM_FILENAME#$TM_LINE_NUMBER \', $1)"),
+--     ls.parser.parse_snippet("ct", "console.table(\'$TM_FILENAME#$TM_LINE_NUMBER \', $1)"),
+--   },
 --
---  To create placeholder text, pass it as the second argument
---      i(2, "this is placeholder text")
-local i = ls.insert_node
+--   lua = {
+--     ls.parser.parse_snippet("lf", "local $1 = function($2)\n  $0\nend")
+--   },
+-- }
 
-ls.filetype_extend("liquid", { "liquid" })
 
-ls.snippets = {
-  all = {
-    ls.parser.parse_snippet("red", "* { color: red !important; }"),
-    ls.parser.parse_snippet("cl", "console.log(\'$TM_FILENAME#$TM_LINE_NUMBER \', $1)"),
-    ls.parser.parse_snippet("ct", "console.table(\'$TM_FILENAME#$TM_LINE_NUMBER \', $1)"),
-  },
-
-  lua = {
-    ls.parser.parse_snippet("lf", "local $1 = function($2)\n  $0\nend")
-  },
-}
-
-require("luasnip.loaders.from_vscode").load({ include = { "liquid" } }) -- Load only liquid snippets
-require("luasnip.loaders.from_vscode").load({ include = { "javascript" } }) -- Load only liquid snippets
--- require("luasnip.loaders.from_vscode").load({ paths = { "./snippets" } }) -- Load snippets from snippets folder
---
--- -- require("luasnip.loaders.from_vscode").load()
-
--- require'luasnip'.filetype_extend("liquid", {"liquid"})
--- require'luasnip'.filetype_extend("javascript", {"javascript"})
-
+-- ls.autosnippets = {
+--   all = {
+--     ls.parser.parse_snippet("$file$", "$TM_FILENAME"),
+--   },
+-- }
 -- shorcut to source my luasnips file again, which will reload my snippets -- @tjdevries | maybe requires nvim 0.7?
--- vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR>")
 
-vim.keymap.set({ "i", "s" }, "<leader>y", function()
+-- <c-k> is my expansion key
+-- this will expand the current item or jump to the next item within the snippet.
+vim.keymap.set({ "i", "s" }, "<leader-y>", function()
   if ls.expand_or_jumpable() then
     ls.expand_or_jump()
   end
@@ -71,11 +66,19 @@ end, { silent = true })
 
 -- <c-j> is my jump backwards key.
 -- this always moves to the previous item within the snippet
-vim.keymap.set({ "i", "s" }, "<c-B>", function()
+vim.keymap.set({ "i", "s" }, "<leader-x>", function()
   if ls.jumpable(-1) then
     ls.jump(-1)
   end
 end, { silent = true })
+
+-- <c-l> is selecting within a list of options.
+-- This is useful for choice nodes (introduced in the forthcoming episode 2)
+vim.keymap.set("i", "<a-l>", function()
+  if ls.choice_active() then
+    ls.change_choice(1)
+  end
+end)
 
 -- @tjdevries: shorcut to source my luasnips file again, which will reload my snippets
 vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR><cmd>echo 'reload snippets'<CR>")

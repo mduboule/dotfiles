@@ -139,8 +139,6 @@ set suffixesadd=.js,.es,.jsx,.json,.css,.scss,.less,.sass,.styl,.php,.py,.md
 " Key maping
 "-------------------------------------------------------------------------------
 
-" let mapleader = "é"
-
 let mapleader = " "
 map <leader><CR> :so ~/.config/nvim/init.vim<CR>
 
@@ -259,7 +257,6 @@ if has("nvim")
   Plug 'neovim/nvim-lspconfig'
   Plug 'tami5/lspsaga.nvim'
   Plug 'folke/lsp-colors.nvim'
-  Plug 'onsails/lspkind-nvim'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
   " Autocompletion
