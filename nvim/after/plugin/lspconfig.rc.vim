@@ -91,17 +91,13 @@ nvim_lsp.tsserver.setup {
   capabilities = capabilities
 }
 
-nvim_lsp.tailwindcss.setup{
-  capabilities = capabilities
-}
+nvim_lsp.tailwindcss.setup {}
 
-nvim_lsp.theme_check.setup{
-  capabilities = capabilities
-}
+nvim_lsp.theme_check.setup {}
 
 nvim_lsp.diagnosticls.setup {
   on_attach = on_attach,
-  filetypes = { 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
+  filetypes = { 'javascript', 'javascriptreact', 'json', 'liquid', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
   init_options = {
     linters = {
       eslint = {
