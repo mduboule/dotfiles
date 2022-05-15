@@ -31,6 +31,7 @@ set hlsearch
 set showcmd
 set cmdheight=1
 set laststatus=2
+set signcolumn=yes
 set scrolloff=10
 set expandtab
 set shell=zsh
@@ -119,7 +120,7 @@ let g:user_emmet_complete_tag = 0
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,scss,liquid,liquid,typescriptreact,vue,javascript,markdown.mdx EmmetInstall
 
-"-------------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " File types
 "-------------------------------------------------------------------------------
 
@@ -252,20 +253,22 @@ if has("nvim")
   Plug 'mattn/emmet-vim'
   Plug 'windwp/nvim-autopairs'
   Plug 'ThePrimeagen/harpoon'
-  " Plug 'f-person/git-blame.nvim'
+  Plug 'lukas-reineke/indent-blankline.nvim'
 
   " Lsp / treesitter
   Plug 'neovim/nvim-lspconfig'
   Plug 'tami5/lspsaga.nvim'
   Plug 'folke/lsp-colors.nvim'
   Plug 'onsails/lspkind-nvim'
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSupdate'}
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
   " Autocompletion
-  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-path'
-  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/nvim-cmp'
+
+  " Snippets
   Plug 'L3MON4D3/LuaSnip'
   Plug 'saadparwaiz1/cmp_luasnip'
   Plug 'rafamadriz/friendly-snippets'
@@ -329,6 +332,6 @@ function! <SID>TrimWhitespace()
 endfun
 
 augroup GROUP_FUNCTIONMARIUS
- autocmd!
- autocmd BufWritePre * :call <SID>TrimWhitespace()
+  autocmd!
+  autocmd BufWritePre * :call <SID>TrimWhitespace()
 augroup END
