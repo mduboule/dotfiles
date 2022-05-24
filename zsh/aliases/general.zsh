@@ -9,8 +9,8 @@ alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'
 # with ib to force using the Intel version of that command
 alias ib='PATH=/usr/local/bin'
 
-alias sz='source ~/.config/.zshrc'
-alias ez='nvim ~/.config/.zshrc'
+alias sz='source ~/.config/zsh/.zshrc'
+alias ez='nvim ~/.config/zsh/.zshrc'
 
 alias c=clear
 alias md=mkdir

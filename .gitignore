@@ -2,10 +2,9 @@
 .DS_Store
 *.swp
 
-/* no idea what this is */
-configStore
-
 toggl-cli/
-shellconfig/z/.z
+.zsh_history
+.zcompdump
+zsh/z/.z*
 nvim/.netrwhist
 

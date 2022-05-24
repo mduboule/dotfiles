@@ -60,5 +60,5 @@
    60     ZSH_THEME_GIT_PROMPT_DIRTY='±'
    61     dirty=$(parse_git_dirty)
    62     ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git show-ref --head -s --abbrev |head -n1 2> /dev/null)"
-.config/shellconfig/themes/cobalt2.zsh-theme                                                                                                                                                                                                                        1,1            Top
+.config/themes/cobalt2.zsh-theme                                                                                                                                                                                                                        1,1            Top
 C
