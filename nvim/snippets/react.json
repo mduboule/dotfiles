@@ -1,5 +1,5 @@
 {
-  "destructuring of props": {
+        "destructuring of props": {
     "prefix": "dp",
     "body": ["const { ${1:name} } = this.props"]
   },
