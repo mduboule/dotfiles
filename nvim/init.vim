@@ -182,9 +182,12 @@ nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sl <C-w>l
 
+" Who needs H, M and L
+nnoremap H ^
+nnoremap L $
+
 " Open new tabs
 nmap te :tabedit<Return>
-
 
 " since <Tab> === <C-i> we need to find a new solution
 " for the jump list. And also, put them in the right order
