@@ -1,10 +1,22 @@
-/* Mac files */
+# Mac files
 .DS_Store
 *.swp
 
+yarn/
+local/
+shopify/
+cache/
+iterm2/
+
+# git
+hub
+
 toggl-cli/
+
+# Z
 .zsh_history
 .zcompdump
 zsh/z/.z*
-nvim/.netrwhist
 
+# netwr
+nvim/.netrwhist
