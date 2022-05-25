@@ -73,6 +73,3 @@ yabai -m config window_gap 0
 
 echo "Yabai configuration loaded"
 #END
-
-# Download and autoupdate yabai on when yabai starts
-YABAI_CERT=yabai-cert sh -c "$(curl -fsSL "https://git.io/update-yabai")" &
