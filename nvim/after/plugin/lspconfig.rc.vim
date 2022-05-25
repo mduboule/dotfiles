@@ -1,6 +1,7 @@
 if !exists('g:lspconfig')
   finish
 endif
+
 lua << EOF
   -- vim.lsp.set_log_level("debug")
 EOF
@@ -42,44 +43,45 @@ local on_attach = function(client, bufnr)
 
   -- formatting
   -- if client.name == 'tsserver' then
-  --   client.resolved_capabilities.document_formatting = false
+  --   client.server_capabilities.document_formatting = false
   -- end
-  if client.server_capabilities.document_formatting then
+
+  -- if client.server_capabilities.document_formatting then
     vim.api.nvim_command [[augroup Format]]
     vim.api.nvim_command [[autocmd! * <buffer>]]
-    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
     vim.api.nvim_command [[augroup END]]
-  end
+  -- end
 
   --protocol.SymbolKind = { }
-  protocol.CompletionItemKind = {
-    '', -- Text
-    '', -- Method
-    '', -- Function
-    '', -- Constructor
-    '', -- Field
-    '', -- Variable
-    '', -- Class
-    'ﰮ', -- Interface
-    '', -- Module
-    '', -- Property
-    '', -- Unit
-    '', -- Value
-    '', -- Enum
-    '', -- Keyword
-    '﬌', -- Snippet
-    '', -- Color
-    '', -- File
-    '', -- Reference
-    '', -- Folder
-    '', -- EnumMember
-    '', -- Constant
-    '', -- Struct
-    '', -- Event
-    'ﬦ', -- Operator
-    '', -- TypeParameter
-  }
+  -- protocol.CompletionItemKind = {
+  --  '', -- Text
+  --  '', -- Method
+  --  '', -- Function
+  --  '', -- Constructor
+  --  '', -- Field
+  --  '', -- Variable
+  --  '', -- Class
+  --  'ﰮ', -- Interface
+  --  '', -- Module
+  --  '', -- Property
+  --  '', -- Unit
+  --  '', -- Value
+  --  '', -- Enum
+  --  '', -- Keyword
+  --  '﬌', -- Snippet
+  --  '', -- Color
+  --  '', -- File
+  --  '', -- Reference
+  --  '', -- Folder
+  --  '', -- EnumMember
+  --  '', -- Constant
+  --  '', -- Struct
+  --  '', -- Event
+  --  'ﬦ', -- Operator
+  --  '', -- TypeParameter
 end
+--}
 
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require('cmp_nvim_lsp').update_capabilities(
@@ -88,16 +90,23 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(
 
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
+  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+  capabilities = capabilities,
+}
+
+nvim_lsp.tailwindcss.setup {
+  on_attach = on_attach,
   capabilities = capabilities
 }
 
-nvim_lsp.tailwindcss.setup {}
-
-nvim_lsp.theme_check.setup {}
+nvim_lsp.theme_check.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
 
 nvim_lsp.diagnosticls.setup {
   on_attach = on_attach,
-  filetypes = { 'javascript', 'javascriptreact', 'json', 'liquid', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
+  filetypes = { 'javascript', 'javascriptreact', 'json', 'liquid', 'typescript', 'typescriptreact', 'css', 'scss' },
   init_options = {
     linters = {
       eslint = {
@@ -143,15 +152,12 @@ nvim_lsp.diagnosticls.setup {
     },
     formatFiletypes = {
       css = 'prettier',
+      scss = 'prettier',
       javascript = 'prettier',
       javascriptreact = 'prettier',
-      json = 'prettier',
-      scss = 'prettier',
-      less = 'prettier',
       typescript = 'prettier',
       typescriptreact = 'prettier',
-      json = 'prettier',
-      markdown = 'prettier',
+      json = 'prettier'
     }
   }
 }
