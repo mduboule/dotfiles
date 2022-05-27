@@ -1,20 +1,24 @@
 # Mac files
 .DS_Store
 *.swp
-
-yarn/
 local/
-shopify/
 cache/
-iterm2/
+
+# npm yarn
+yarn/
+configStore/
 
 # git
 hub
 
+# apps
+iterm2/
+shopify/
 toggl-cli/
 
 # Z
 .zsh_history
+.zsh_sessions
 .zcompdump
 zsh/z/.z*
 
