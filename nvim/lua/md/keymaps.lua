@@ -9,7 +9,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Source entire config
-keymap("n", "<leader><CR>", ":so $MYVIMRC<CR>", opts)
+keymap("n", "<leader><CR>", ":luafile $MYVIMRC<CR>", { noremap = true, silent = false })
 
 -- Use Command + S (<D-s>) to save. Requires <D-s> to
 -- fire <C-z> inside the terminal as an intermediate command.
@@ -24,7 +24,7 @@ keymap("n", "<leader>d", "<C-d>", opts)
 keymap("n", "<leader>u", "<C-u>", opts)
 
 -- Select all
-keymap("n", "<leader>b", "gg<S-v>G", opts)
+keymap("n", "<leader>a", "gg<S-v>G", opts)
 
 -- Escape
 keymap("i", "jk", "<Esc>", opts)
@@ -102,3 +102,16 @@ keymap("n", "cN", "*``cgN", opts)
 
 -- Don't replace my clipboard when pasting
 keymap("v", "p", '"_dP', opts)
+
+-- Telescope
+keymap("n", "<leader>tp", "<cmd>Telescope git_files<CR>", opts)
+keymap("n", "<leader>tg", "<cmd>Telescope live_grep<CR>", opts)
+keymap("n", "<leader>tb", "<cmd>Telescope buffers<CR>", opts)
+keymap("n", "<leader>tc", "<cmd>Telescope commands<CR>", opts)
+keymap("n", "<leader>tf", "<cmd>Telescope current_buffer_fuzzy_find<CR>", opts)
+-- search config files
+keymap("n", "<leader>t.", "<cmd>lua require'telescope.builtin'.find_files{ cwd = '~/.config/', prompt_title='Search in config files' }<CR>", opts)
+-- worktree: switch and delete (<c-f> ?) worktrees
+keymap("n", "<leader>ww", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts)
+-- worktree: create a worktree
+keymap("n", "<leader>wa", "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>", opts)

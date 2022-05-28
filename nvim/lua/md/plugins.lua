@@ -58,7 +58,7 @@ return packer.startup(function(use)
   use "ThePrimeagen/harpoon"
 
   -- Git
-  -- use 'ThePrimeagen/git-worktree.nvim'
+  use 'ThePrimeagen/git-worktree.nvim'
   -- use 'f-person/git-blame.nvim'
 
   -- Telescope
