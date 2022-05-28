@@ -1,7 +1,12 @@
+local status_ok, indent_blankline = pcall(require, "indent_blankline")
+if not status_ok then
+  return
+end
+
 vim.opt.list = true
 vim.cmd [[highlight IndentBlanklineIndent1 guifg=#3E4452 gui=nocombine]]
 
-require("indent_blankline").setup {
+indent_blankline.setup {
   -- can be slow according to doc
   show_current_context = true,
   show_current_context_start = true,
