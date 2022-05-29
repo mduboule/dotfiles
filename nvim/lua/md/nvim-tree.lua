@@ -50,6 +50,7 @@ nvim_tree.setup {
         { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
         { key = "h", cb = tree_cb "close_node" },
         { key = "v", cb = tree_cb "vsplit" },
+        { key = "s", cb = tree_cb "" },
       },
     },
   },
@@ -146,10 +147,10 @@ nvim_tree.setup {
       restrict_above_cwd = false,
     },
     open_file = {
-      quit_on_open = false,
+      quit_on_open = true,
       resize_window = true,
       window_picker = {
-        enable = true,
+        enable = false,
         chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
         exclude = {
           filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
