@@ -37,7 +37,10 @@ local options = {
   timeoutlen = 300, -- time out for mappings to fire
   undofile = true, -- enable persistent undo
   updatetime = 300, -- faster completion (default is 4000)
+  cursorline = true,
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
+  termguicolors = true, -- set term gui colors
+  pumblend = 5, -- enables pseudo-transparency for popup menu
 }
 
 vim.opt.shortmess:append "c" -- related to removing window messages for searches, completion, etc.

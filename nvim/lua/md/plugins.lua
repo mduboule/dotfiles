@@ -80,6 +80,9 @@ return packer.startup(function(use)
   -- Filer
   use "kyazdani42/nvim-tree.lua"
 
+  -- Colors
+  use "lunarvim/darkplus.nvim"
+
 --  use "numToStr/Comment.nvim" -- Easily comment stuff
 --  use "kyazdani42/nvim-web-devicons"
 --  use "akinsho/bufferline.nvim"
