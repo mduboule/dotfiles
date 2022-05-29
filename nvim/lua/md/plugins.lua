@@ -61,6 +61,7 @@ return packer.startup(function(use)
   -- Git
   use 'ThePrimeagen/git-worktree.nvim'
   -- use 'f-person/git-blame.nvim'
+  use 'lewis6991/gitsigns.nvim'
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
