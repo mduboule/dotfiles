@@ -45,6 +45,7 @@ return packer.startup(function(use)
   -- Libraries
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used in lots of plugins
+  use "kyazdani42/nvim-web-devicons"
 
   -- T Pope 4ever
   use "tpope/vim-fugitive"
@@ -64,7 +65,6 @@ return packer.startup(function(use)
   -- Telescope
   use "nvim-telescope/telescope.nvim"
   use "nvim-telescope/telescope-fzy-native.nvim"
-  use "kyazdani42/nvim-web-devicons"
 
   -- Autocompletion
   use "hrsh7th/cmp-nvim-lsp"

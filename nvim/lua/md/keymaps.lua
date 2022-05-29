@@ -103,6 +103,9 @@ keymap("n", "cN", "*``cgN", opts)
 -- Don't replace my clipboard when pasting
 keymap("v", "p", '"_dP', opts)
 
+-- File explorer
+keymap("n", "sf", ":NvimTreeToggle<CR>", opts)
+
 -- Telescope
 keymap("n", "<leader>tp", "<cmd>Telescope git_files<CR>", opts)
 keymap("n", "<leader>tg", "<cmd>Telescope live_grep<CR>", opts)
