@@ -58,6 +58,15 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs"
   use "ThePrimeagen/harpoon"
 
+  -- Lsp / treesitter
+  use 'neovim/nvim-lspconfig'
+  use 'tami5/lspsaga.nvim'
+  use 'folke/lsp-colors.nvim'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+  }
+
   -- Git
   use 'ThePrimeagen/git-worktree.nvim'
   -- use 'f-person/git-blame.nvim'
