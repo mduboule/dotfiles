@@ -36,10 +36,10 @@ nvim_tree.setup {
   reload_on_bufenter = false,
   respect_buf_cwd = false,
   view = {
-    width = 30,
+    width = 35,
     height = 30,
     hide_root_folder = false,
-    side = "left",
+    side = "right",
     preserve_window_proportions = false,
     number = false,
     relativenumber = false,
@@ -47,10 +47,11 @@ nvim_tree.setup {
     mappings = {
       custom_only = false,
       list = {
-        { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
-        { key = "h", cb = tree_cb "close_node" },
-        { key = "v", cb = tree_cb "vsplit" },
-        { key = "s", cb = tree_cb "" },
+        { key = { "l", "<CR>", "o" }, action = "edit" },
+        { key = "h", action = "close_node" },
+        { key = "v", action = "vsplit" },
+        { key = "n", action = "create" },
+        { key = "s", action = "" },
       },
     },
   },
