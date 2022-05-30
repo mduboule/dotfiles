@@ -112,9 +112,15 @@ keymap("n", "<leader>tg", "<cmd>Telescope live_grep<CR>", opts)
 keymap("n", "<leader>tb", "<cmd>Telescope buffers<CR>", opts)
 keymap("n", "<leader>tc", "<cmd>Telescope commands<CR>", opts)
 keymap("n", "<leader>tf", "<cmd>Telescope current_buffer_fuzzy_find<CR>", opts)
--- search config files
 keymap("n", "<leader>t.", "<cmd>lua require'telescope.builtin'.find_files{ cwd = '~/.config/', prompt_title='Search in config files' }<CR>", opts)
--- worktree: switch and delete (<c-f> ?) worktrees
-keymap("n", "<leader>ww", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts)
--- worktree: create a worktree
-keymap("n", "<leader>wa", "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>", opts)
+keymap("n", "<leader>ww", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts) -- worktree: switch and delete (<c-f> ?) worktrees
+keymap("n", "<leader>wa", "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>", opts) -- worktree: create a worktree
+
+-- Harpoon
+keymap("n", "<leader>hw", "<cmd>lua require('harpoon.mark').add_file()", opts)
+keymap("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()", opts)
+keymap("n", "<leader>hc", "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()", opts)
+keymap("n", "<leader>ha", "<cmd>lua require('harpoon.ui').nav_file(1)<CR", opts)
+keymap("n", "<leader>hs", "<cmd>lua require('harpoon.ui').nav_file(2)<CR", opts)
+keymap("n", "<leader>hd", "<cmd>lua require('harpoon.ui').nav_file(3)<CR", opts)
+keymap("n", "<leader>hf", "<cmd>lua require('harpoon.ui').nav_file(4)<CR", opts)
