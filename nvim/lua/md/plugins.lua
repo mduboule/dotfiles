@@ -53,23 +53,16 @@ return packer.startup(function(use)
   use "tpope/vim-repeat"
 
   -- Editing
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
-  use "psliwka/vim-smoothie"
+  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
+  use "psliwka/vim-smoothie" -- smooth scrolling
   use "numToStr/Comment.nvim"
   use "windwp/nvim-autopairs"
-  use "lukas-reineke/indent-blankline.nvim"
+  use "lukas-reineke/indent-blankline.nvim" -- add indentation marks
   use "ThePrimeagen/harpoon"
 
   -- Lsp / treesitter
   use 'neovim/nvim-lspconfig'
-  use 'folke/lsp-colors.nvim'
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-  }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', }
 
   -- Git
   use 'ThePrimeagen/git-worktree.nvim'
@@ -100,53 +93,22 @@ return packer.startup(function(use)
   -- Performance
   use 'dstein64/vim-startuptime'
 
---  use "numToStr/Comment.nvim" -- Easily comment stuff
---  use "kyazdani42/nvim-web-devicons"
---  use "akinsho/bufferline.nvim"
---  use "moll/vim-bbye"
---  use "nvim-lualine/lualine.nvim"
---  use "akinsho/toggleterm.nvim"
---  use "ahmedkhalf/project.nvim"
---  use "lewis6991/impatient.nvim"
---  use "lukas-reineke/indent-blankline.nvim"
---  use "goolord/alpha-nvim"
---  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
---  use "folke/which-key.nvim"
-
-  -- Colorschemes
-  -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
-  -- use "lunarvim/darkplus.nvim"
-
-  -- cmp plugins
-  -- use "hrsh7th/nvim-cmp" -- The completion plugin
-  -- use "hrsh7th/cmp-buffer" -- buffer completions
-  -- use "hrsh7th/cmp-path" -- path completions
-  -- use "hrsh7th/cmp-cmdline" -- cmdline completions
-  -- use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  -- use "hrsh7th/cmp-nvim-lsp"
-
-  -- snippets
-  -- use "L3MON4D3/LuaSnip" --snippet engine
-  -- use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  -- Do I need any of those?
+  --  use "akinsho/bufferline.nvim"
+  --  use "moll/vim-bbye"
+  --  use "akinsho/toggleterm.nvim"
+  --  use "ahmedkhalf/project.nvim"
+  --  use "lewis6991/impatient.nvim"
+  --  use "goolord/alpha-nvim"
+  --  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
+  --  use "folke/which-key.nvim"
 
   -- LSP
   -- use "neovim/nvim-lspconfig" -- enable LSP
   -- use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   -- use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   -- use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-
-  -- Telescope
-  -- use "nvim-telescope/telescope.nvim"
-
-  -- Treesitter
- --  use {
- --    "nvim-treesitter/nvim-treesitter",
- --    run = ":TSUpdate",
- --  }
  --  use "JoosepAlviste/nvim-ts-context-commentstring"
-
-  -- Git
-  -- use "lewis6991/gitsigns.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
