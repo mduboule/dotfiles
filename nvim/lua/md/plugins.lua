@@ -53,6 +53,10 @@ return packer.startup(function(use)
   use "tpope/vim-repeat"
 
   -- Editing
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
   use "psliwka/vim-smoothie"
   use "numToStr/Comment.nvim"
   use "windwp/nvim-autopairs"
