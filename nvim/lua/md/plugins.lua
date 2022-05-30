@@ -60,7 +60,6 @@ return packer.startup(function(use)
 
   -- Lsp / treesitter
   use 'neovim/nvim-lspconfig'
-  use 'tami5/lspsaga.nvim'
   use 'folke/lsp-colors.nvim'
   use {
     'nvim-treesitter/nvim-treesitter',
