@@ -59,6 +59,7 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs"
   use "lukas-reineke/indent-blankline.nvim" -- add indentation marks
   use "ThePrimeagen/harpoon"
+  use "aca/emmet-ls"
 
   -- Lsp / treesitter
   use 'neovim/nvim-lspconfig'

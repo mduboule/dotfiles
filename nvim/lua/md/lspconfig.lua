@@ -74,7 +74,7 @@ nvim_lsp.tailwindcss.setup {
   capabilities = capabilities
 }
 
-nvim_lsp.jsonls.setup{
+nvim_lsp.jsonls.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
@@ -82,6 +82,11 @@ nvim_lsp.jsonls.setup{
 nvim_lsp.theme_check.setup {
   on_attach = on_attach,
   capabilities = capabilities
+}
+
+nvim_lsp.emmet_ls.setup {
+  capabilities = capabilities,
+  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'liquid' },
 }
 
 nvim_lsp.sumneko_lua.setup {
