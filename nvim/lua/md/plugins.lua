@@ -97,6 +97,9 @@ return packer.startup(function(use)
   -- Colors
   use "lunarvim/darkplus.nvim"
 
+  -- Performance
+  use 'dstein64/vim-startuptime'
+
 --  use "numToStr/Comment.nvim" -- Easily comment stuff
 --  use "kyazdani42/nvim-web-devicons"
 --  use "akinsho/bufferline.nvim"
