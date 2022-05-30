@@ -117,10 +117,10 @@ keymap("n", "<leader>ww", "<cmd>lua require('telescope').extensions.git_worktree
 keymap("n", "<leader>wa", "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>", opts) -- worktree: create a worktree
 
 -- Harpoon
-keymap("n", "<leader>hw", "<cmd>lua require('harpoon.mark').add_file()", opts)
-keymap("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()", opts)
-keymap("n", "<leader>hc", "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()", opts)
-keymap("n", "<leader>ha", "<cmd>lua require('harpoon.ui').nav_file(1)<CR", opts)
-keymap("n", "<leader>hs", "<cmd>lua require('harpoon.ui').nav_file(2)<CR", opts)
-keymap("n", "<leader>hd", "<cmd>lua require('harpoon.ui').nav_file(3)<CR", opts)
-keymap("n", "<leader>hf", "<cmd>lua require('harpoon.ui').nav_file(4)<CR", opts)
+keymap("n", "<leader>hw", "<cmd>lua require('harpoon.mark').add_file()<CR>", opts)
+keymap("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
+keymap("n", "<leader>hc", "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<CR>", opts)
+keymap("n", "<leader>ha", "<cmd>lua require('harpoon.ui').nav_file(1)<CR>", opts)
+keymap("n", "<leader>hs", "<cmd>lua require('harpoon.ui').nav_file(2)<CR>", opts)
+keymap("n", "<leader>hd", "<cmd>lua require('harpoon.ui').nav_file(3)<CR>", opts)
+keymap("n", "<leader>hf", "<cmd>lua require('harpoon.ui').nav_file(1)<CR>", opts)
