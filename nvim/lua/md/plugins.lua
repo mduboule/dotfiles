@@ -60,6 +60,7 @@ return packer.startup(function(use)
   use "lukas-reineke/indent-blankline.nvim" -- add indentation marks
   use "ThePrimeagen/harpoon"
   use "aca/emmet-ls"
+  use "fgheng/winbar.nvim"
 
   -- Lsp / treesitter
   use 'neovim/nvim-lspconfig'
