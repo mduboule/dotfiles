@@ -60,6 +60,7 @@ return packer.startup(function(use)
   use "psliwka/vim-smoothie"
   use "numToStr/Comment.nvim"
   use "windwp/nvim-autopairs"
+  use "lukas-reineke/indent-blankline.nvim"
   use "ThePrimeagen/harpoon"
 
   -- Lsp / treesitter
