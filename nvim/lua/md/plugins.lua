@@ -61,6 +61,7 @@ return packer.startup(function(use)
   use "ThePrimeagen/harpoon"
   use "aca/emmet-ls"
   use "fgheng/winbar.nvim"
+  use { "christianchiarulli/nvim-gps", branch = "text_hl" }
 
   -- Lsp / treesitter
   use 'neovim/nvim-lspconfig'
