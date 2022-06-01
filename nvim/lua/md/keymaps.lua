@@ -1,6 +1,4 @@
 local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
-
 local keymap = vim.api.nvim_set_keymap
 
 -- Leader key
@@ -107,12 +105,12 @@ keymap("v", "p", '"_dP', opts)
 keymap("n", "sf", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>tp", "<cmd>Telescope git_files<CR>", opts)
+keymap("n", "<leader>tp", "<cmd>lua require'md.telescope'.project_files()<CR>", opts)
 keymap("n", "<leader>tg", "<cmd>Telescope live_grep<CR>", opts)
-keymap("n", "<leader>tb", "<cmd>Telescope buffers<CR>", opts)
 keymap("n", "<leader>tc", "<cmd>Telescope commands<CR>", opts)
 keymap("n", "<leader>tf", "<cmd>Telescope current_buffer_fuzzy_find<CR>", opts)
-keymap("n", "<leader>t.", "<cmd>lua require'telescope.builtin'.find_files{ cwd = '~/.config/', prompt_title='Search in config files' }<CR>", opts)
+keymap("n", "<leader>t.", "<cmd>lua require'md.telescope'.search_dotfiles()<CR>", opts)
+keymap("n", "<leader>tb", "<cmd>lua require'md.telescope'.search_buffers()<CR>", opts)
 keymap("n", "<leader>ww", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts) -- worktree: switch and delete (<c-f> ?) worktrees
 keymap("n", "<leader>wa", "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>", opts) -- worktree: create a worktree
 

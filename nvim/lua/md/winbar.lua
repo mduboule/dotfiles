@@ -1,4 +1,4 @@
- M = {}
+local M = {}
 
 M.winbar_filetype_exclude = {
   "help",
