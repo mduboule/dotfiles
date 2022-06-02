@@ -107,7 +107,9 @@ keymap("n", "sf", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>tp", "<cmd>lua require'md.telescope'.project_files()<CR>", opts)
-keymap("n", "<leader>tg", "<cmd>Telescope live_grep<CR>", opts)
+keymap("n", "<leader>ttp", "<cmd>lua require'md.telescope'.work_project_files()<CR>", opts)
+keymap("n", "<leader>tg", "<cmd>lua require'md.telescope'.live_grep()<CR>", opts)
+keymap("n", "<leader>ttg", "<cmd>lua require'md.telescope'.work_live_grep()<CR>", opts)
 keymap("n", "<leader>tc", "<cmd>Telescope commands<CR>", opts)
 keymap("n", "<leader>tf", "<cmd>Telescope current_buffer_fuzzy_find<CR>", opts)
 keymap("n", "<leader>t.", "<cmd>lua require'md.telescope'.search_dotfiles()<CR>", opts)

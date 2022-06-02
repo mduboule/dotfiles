@@ -39,12 +39,33 @@ M.project_files = function()
   if not ok then builtin.find_files(opts) end
 end
 
+M.work_project_files = function()
+  local opts = {
+    cwd = "./node_modules/@softlimit/framework",
+    prompt_title = "Find Files in SL Framework"
+  }
+  builtin.find_files(opts)
+end
+
 M.search_dotfiles = function()
   builtin.find_files({
     prompt_title = "Search in config files",
     cwd = "$HOME/.config/",
     hidden = true,
   })
+end
+
+M.live_grep = function ()
+  local opts = themes.get_dropdown{}
+  builtin.live_grep(opts)
+end
+
+M.work_live_grep = function()
+  local opts = {
+    cwd = "./node_modules/@softlimit/framework",
+    prompt_title = "Live Grep in SL Framework"
+  }
+  builtin.live_grep(opts)
 end
 
 M.search_buffers = function ()
