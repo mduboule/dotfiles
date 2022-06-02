@@ -7,7 +7,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Source entire config
-keymap("n", "<leader><CR>", ":luafile $MYVIMRC<CR>", { noremap = true, silent = false })
+-- keymap("n", "<leader><CR>", ":luafile $MYVIMRC<CR>", { noremap = true, silent = false })
 
 -- Use Command + S (<D-s>) to save. Requires <D-s> to
 -- fire <C-z> inside the terminal as an intermediate command.
@@ -26,6 +26,7 @@ keymap("n", "<leader>a", "gg<S-v>G", opts)
 
 -- Escape
 keymap("i", "jk", "<Esc>", opts)
+keymap("n", "<esc><esc>", "<cmd>nohlsearch<cr>", opts)
 
 -- Navigate between tabs
 -- keymap("n", "<Tab>", ">>", opts)
