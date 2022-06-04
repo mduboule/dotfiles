@@ -1,6 +1,8 @@
 local M = {}
 
+-- `:echo &ft` to print filetype
 M.winbar_filetype_exclude = {
+  "harpoon",
   "help",
   "startify",
   "dashboard",
@@ -18,6 +20,8 @@ M.winbar_filetype_exclude = {
 local get_filename = function()
   local filename = vim.fn.expand "%:t"
   local extension = vim.fn.expand "%:e"
+  local full_path = vim.fn.expand "%:p"
+
   local f = require "md.functions"
 
   if not f.isempty(filename) then
@@ -27,6 +31,11 @@ local get_filename = function()
       { default = true }
     )
 
+    local marker = ""
+    if string.find(full_path, "framework") then
+      marker = "FW "
+    end
+
     local hl_group = "FileIconColor" .. extension
 
     vim.api.nvim_set_hl(0, hl_group, { fg = file_icon_color })
@@ -35,7 +44,7 @@ local get_filename = function()
       file_icon_color = ""
     end
 
-    return " " .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#LineNr#" .. filename .. "%*"
+    return " " .. marker .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#LineNr#" .. filename .. "%*"
   end
 end
 
