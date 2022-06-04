@@ -1,8 +1,8 @@
-if vim.g.snippets ~= "luasnip" then
+local status_ok, ls = pcall(require, 'luasnip')
+if not status_ok then
   return
 end
 
-local ls = require "luasnip"
 local types = require "luasnip.util.types"
 
 -- Load lua snippets
@@ -81,4 +81,4 @@ vim.keymap.set("i", "<a-l>", function()
 end)
 
 -- @tjdevries: shorcut to source my luasnips file again, which will reload my snippets
-vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR><cmd>echo 'reload snippets'<CR>")
+vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/md/luasnip.lua<CR><cmd>echo 'reload snippets'<CR>")

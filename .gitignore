@@ -11,6 +11,9 @@ configStore/
 # git
 hub
 
+# nvim
+nvim/plugin/
+
 # apps
 iterm2/
 shopify/

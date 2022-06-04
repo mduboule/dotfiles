@@ -1,5 +1,9 @@
-local Worktree = require("git-worktree")
-local Job = require("plenary.job")
+local status_wt, Worktree = pcall(require, "git-worktree")
+local status_job, Job = pcall(require, "plenary.job")
+
+if not status_wt or not status_job then
+  return
+end
 
 -- op = Operations.Switch, Operations.Create, Operations.Delete
 -- metadata = table of useful values (structure dependent on op)
