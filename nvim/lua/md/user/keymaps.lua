@@ -7,7 +7,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Source entire config
--- keymap("n", "<leader><CR>", ":luafile $MYVIMRC<CR>", { noremap = true, silent = false })
+keymap("n", "<leader><CR>", "<cmd>lua ReloadConfig()<CR>", { noremap = true, silent = false })
 
 -- Use Command + S (<D-s>) to save. Requires <D-s> to
 -- fire <C-z> inside the terminal as an intermediate command.

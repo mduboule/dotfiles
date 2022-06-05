@@ -1,3 +1,4 @@
+require 'md.core.reload'
 require 'md.core.worktree'
 
 require 'md.user.autocommands'
