@@ -106,14 +106,14 @@ keymap("v", "p", '"_dP', opts)
 keymap("n", "sf", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>tp", "<cmd>lua require'md.telescope'.project_files()<CR>", opts)
-keymap("n", "<leader>ttp", "<cmd>lua require'md.telescope'.work_project_files()<CR>", opts)
-keymap("n", "<leader>tg", "<cmd>lua require'md.telescope'.live_grep()<CR>", opts)
-keymap("n", "<leader>ttg", "<cmd>lua require'md.telescope'.work_live_grep()<CR>", opts)
+keymap("n", "<leader>tp", "<cmd>lua require'md.plugins.telescope'.project_files()<CR>", opts)
+keymap("n", "<leader>ttp", "<cmd>lua require'md.plugins.telescope'.work_project_files()<CR>", opts)
+keymap("n", "<leader>tg", "<cmd>lua require'md.plugins.telescope'.live_grep()<CR>", opts)
+keymap("n", "<leader>ttg", "<cmd>lua require'md.plugins.telescope'.work_live_grep()<CR>", opts)
 keymap("n", "<leader>tc", "<cmd>Telescope commands<CR>", opts)
 keymap("n", "<leader>tf", "<cmd>Telescope current_buffer_fuzzy_find<CR>", opts)
-keymap("n", "<leader>t.", "<cmd>lua require'md.telescope'.search_dotfiles()<CR>", opts)
-keymap("n", "<leader>tb", "<cmd>lua require'md.telescope'.search_buffers()<CR>", opts)
+keymap("n", "<leader>t.", "<cmd>lua require'md.plugins.telescope'.search_dotfiles()<CR>", opts)
+keymap("n", "<leader>tb", "<cmd>lua require'md.plugins.telescope'.search_buffers()<CR>", opts)
 keymap("n", "<leader>ww", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts) -- worktree: switch and delete (<c-f> ?) worktrees
 keymap("n", "<leader>wa", "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>", opts) -- worktree: create a worktree
 

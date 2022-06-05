@@ -42,6 +42,6 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 
 vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost" }, {
   callback = function()
-    require("md.winbar").get_winbar()
+    require("md.plugins.winbar").get_winbar()
   end,
 })
