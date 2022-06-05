@@ -12,8 +12,8 @@ keymap("n", "<leader><CR>", "<cmd>lua ReloadConfig()<CR>", { noremap = true, sil
 -- Use Command + S (<D-s>) to save. Requires <D-s> to
 -- fire <C-z> inside the terminal as an intermediate command.
 -- https://stackoverflow.com/a/63458243
-keymap("n", "<C-z>", ":w<CR>", opts)
-keymap("i", "<C-z>", "<ESC>:w<CR>a", opts)
+keymap("n", "<C-z>", "<cmd>w<CR>", opts)
+keymap("i", "<C-z>", "<ESC><cmd>w<CR>a", opts)
 
 -- Scroll motions
 keymap("n", "<leader>f", "<PageDown>", opts)
@@ -41,8 +41,8 @@ keymap("v", "<Tab>", ">gv", opts)
 keymap("v", "<S-Tab>", "<gv", opts)
 
 -- Splits
-keymap("n", "ss", ":split<CR>", opts)
-keymap("n", "vs", ":vsplit<CR>", opts)
+keymap("n", "ss", "<cmd>split<CR>", opts)
+keymap("n", "vs", "<cmd>vsplit<CR>", opts)
 
 -- Navigate between windows
 keymap("n", "sh", "<C-w>h", opts)
@@ -51,17 +51,17 @@ keymap("n", "sk", "<C-w>k", opts)
 keymap("n", "sl", "<C-w>l", opts)
 
 -- Resize windows
-keymap("n", "<leader><Up>", ":resize +4<CR>", opts)
-keymap("n", "<leader><Down>", ":resize -2<CR>", opts)
-keymap("n", "<leader><Left>", ":vertical resize -4<CR>", opts)
-keymap("n", "<leader><Right>", ":vertical resize +4<CR>", opts)
+keymap("n", "<leader><Up>", "<cmd>resize +4<CR>", opts)
+keymap("n", "<leader><Down>", "<cmd>resize -2<CR>", opts)
+keymap("n", "<leader><Left>", "<cmd>vertical resize -4<CR>", opts)
+keymap("n", "<leader><Right>", "<cmd>vertical resize +4<CR>", opts)
 
 -- Who needs H, M and L
 keymap("n", "H", "^", opts)
 keymap("n", "L", "$", opts)
 
 -- Open new tab
-keymap("n", "te", ":tabedit<CR>", opts)
+keymap("n", "te", "<cmd>tabedit<CR>", opts)
 
 -- since <Tab> === <C-i> we need to find a new solution
 -- for the jump list. And also, put them in the right order
@@ -70,19 +70,19 @@ keymap("n", "<leader>o", "<C-i>", opts)
 keymap("n", "<leader>i", "<C-o>", opts)
 
 -- Navigate in quickfix lists
-keymap("n", "<C-h>", ":cprev<CR>zz", opts)
-keymap("n", "<C-l>", ":cnext<CR>zz", opts)
+keymap("n", "<C-h>", "<cmd>cprev<CR>zz", opts)
+keymap("n", "<C-l>", "<cmd>cnext<CR>zz", opts)
 
 -- Move group of lines
-keymap("v", "J", ":move '>+1<CR>gv=gv", opts)
-keymap("v", "K", ":move '<-2<CR>gv=gv", opts)
-keymap("i", "<C-j>", "<esc>:m .+1<CR>==i", opts)
-keymap("i", "<C-k>", "<esc>:m .-2<CR>==i", opts)
+keymap("v", "J", "<cmd>move '>+1<CR>gv=gv", opts)
+keymap("v", "K", "<cmd>move '<-2<CR>gv=gv", opts)
+keymap("i", "<C-j>", "<esc><cmd>m .+1<CR>==i", opts)
+keymap("i", "<C-k>", "<esc><cmd>m .-2<CR>==i", opts)
 
 -- Fugitive and merge conflicts
-keymap("n", "<leader>gs", ":G<CR>", opts)
-keymap("n", "<leader>gj", ":diffget //3<CR>", opts)
-keymap("n", "<leader>gf", ":diffget //2<CR>", opts)
+keymap("n", "<leader>gs", "<cmd>G<CR>", opts)
+keymap("n", "<leader>gj", "<cmd>diffget //3<CR>", opts)
+keymap("n", "<leader>gf", "<cmd>diffget //2<CR>", opts)
 
 -- Keep focus in the center
 keymap("n", "n", "nzzzv", opts)
@@ -103,7 +103,7 @@ keymap("n", "cN", "*``cgN", opts)
 keymap("v", "p", '"_dP', opts)
 
 -- File explorer
-keymap("n", "sf", ":NvimTreeToggle<CR>", opts)
+keymap("n", "sf", "<cmd>NvimTreeToggle<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>tp", "<cmd>lua require'md.plugins.telescope'.project_files()<CR>", opts)
