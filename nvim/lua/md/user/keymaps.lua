@@ -9,6 +9,16 @@ vim.g.maplocalleader = " "
 -- Source entire config
 keymap("n", "<leader><CR>", "<cmd>lua ReloadConfig()<CR>", { noremap = true, silent = false })
 
+-- Reset
+keymap("n", "<Up>", "<Nop>", opts)
+keymap("n", "<Down>", "<Nop>", opts)
+keymap("n", "<Left>", "<Nop>", opts)
+keymap("n", "<Right>", "<Nop>", opts)
+keymap("i", "<Up>", "<Nop>", opts)
+keymap("i", "<Down>", "<Nop>", opts)
+keymap("i", "<Left>", "<Nop>", opts)
+keymap("i", "<Right>", "<Nop>", opts)
+
 -- Use Command + S (<D-s>) to save. Requires <D-s> to
 -- fire <C-z> inside the terminal as an intermediate command.
 -- https://stackoverflow.com/a/63458243
@@ -51,10 +61,10 @@ keymap("n", "sk", "<C-w>k", opts)
 keymap("n", "sl", "<C-w>l", opts)
 
 -- Resize windows
-keymap("n", "<leader><Up>", "<cmd>resize +4<CR>", opts)
-keymap("n", "<leader><Down>", "<cmd>resize -2<CR>", opts)
-keymap("n", "<leader><Left>", "<cmd>vertical resize -4<CR>", opts)
-keymap("n", "<leader><Right>", "<cmd>vertical resize +4<CR>", opts)
+keymap("n", "<Up>", "<cmd>resize +4<CR>", opts)
+keymap("n", "<Down>", "<cmd>resize -2<CR>", opts)
+keymap("n", "<Left>", "<cmd>vertical resize -4<CR>", opts)
+keymap("n", "<Right>", "<cmd>vertical resize +4<CR>", opts)
 
 -- Who needs H, M and L
 keymap("n", "H", "^", opts)
