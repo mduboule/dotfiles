@@ -45,32 +45,32 @@ return packer.startup(function(use)
   -- Libraries
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used in lots of plugins
-  use "kyazdani42/nvim-web-devicons"
+  use { "kyazdani42/nvim-web-devicons", event = 'BufRead' }
 
   -- T Pope 4ever
-  use "tpope/vim-fugitive"
-  use "tpope/vim-surround"
+  use { "tpope/vim-fugitive", event = 'BufRead' }
+  use { "tpope/vim-surround", event = 'BufRead' }
   use "tpope/vim-repeat"
 
   -- Editing
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
   use "psliwka/vim-smoothie" -- smooth scrolling
   use "numToStr/Comment.nvim"
-  use "windwp/nvim-autopairs"
+  use { "windwp/nvim-autopairs", event = 'BufRead' }
   use "lukas-reineke/indent-blankline.nvim" -- add indentation marks
   use "ThePrimeagen/harpoon"
-  use "aca/emmet-ls"
+  use { "aca/emmet-ls", event = 'BufRead' }
   use "fgheng/winbar.nvim"
   use { "christianchiarulli/nvim-gps", branch = "text_hl" }
 
   -- Lsp / treesitter
-  use 'neovim/nvim-lspconfig'
+  use { 'neovim/nvim-lspconfig', event = 'BufRead' }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', }
 
   -- Git
   use 'ThePrimeagen/git-worktree.nvim'
   -- use 'f-person/git-blame.nvim'
-  use 'lewis6991/gitsigns.nvim'
+  use { 'lewis6991/gitsigns.nvim', event = 'BufRead' }
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
@@ -78,9 +78,9 @@ return packer.startup(function(use)
 
   -- Autocompletion
   use "hrsh7th/nvim-cmp"
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-buffer"
   use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-buffer"
+  use "hrsh7th/cmp-nvim-lsp"
 
   -- Snippets
   use "L3MON4D3/LuaSnip"
@@ -94,6 +94,7 @@ return packer.startup(function(use)
   use "lunarvim/darkplus.nvim"
 
   -- Performance
+  use 'lewis6991/impatient.nvim'
   use 'dstein64/vim-startuptime'
 
   -- Do I need any of those?

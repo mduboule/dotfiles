@@ -6,7 +6,7 @@ end
 local types = require "luasnip.util.types"
 
 -- Load lua snippets
-require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
+require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/snippets/" })
 
 ls.config.set_config {
   enable_autosnippets = true,
@@ -34,7 +34,7 @@ ls.config.set_config {
 -- local snippet = ls.s
 -- local events = require "luasnip.util.events"
 
-require("luasnip.loaders.from_vscode").load({"./snippets"}) -- Load snippets from snippets folder
+require("luasnip.loaders.from_vscode").lazy_load({"./snippets"}) -- Load snippets from snippets folder
 -- ls.snippets = {
 
 --   all = {

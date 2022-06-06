@@ -1,3 +1,5 @@
+pcall(require, 'impatient')
+
 require 'md.core.reload'
 require 'md.core.worktree'
 
