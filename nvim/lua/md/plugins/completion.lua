@@ -83,7 +83,7 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = "luasnip" },
     { name = "copilot" },
-    { name = "nvim_lsp", max_item_count = 6 },
+    { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "path" },
     { name = "buffer", keyword_length = 3, max_item_count = 6 },

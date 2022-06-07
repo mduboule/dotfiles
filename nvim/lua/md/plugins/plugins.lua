@@ -64,7 +64,7 @@ return packer.startup(function(use)
   use { "christianchiarulli/nvim-gps", branch = "text_hl" }
 
   -- Lsp / treesitter
-  use { 'neovim/nvim-lspconfig', event = 'BufRead' }
+  use 'neovim/nvim-lspconfig'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', }
 
   -- Git
