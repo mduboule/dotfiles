@@ -56,7 +56,7 @@ M.search_dotfiles = function()
 end
 
 M.live_grep = function ()
-  local opts = themes.get_dropdown{}
+  local opts = {}
   builtin.live_grep(opts)
 end
 
@@ -71,6 +71,9 @@ end
 M.search_buffers = function ()
   local opts = themes.get_dropdown {
     previewer = false,
+    layout_config = {
+      width = 0.6,
+    }
   }
  builtin.buffers(opts)
 end
