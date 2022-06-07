@@ -48,7 +48,7 @@ return packer.startup(function(use)
   use { "kyazdani42/nvim-web-devicons", event = 'BufRead' }
 
   -- T Pope 4ever
-  use { "tpope/vim-fugitive", event = 'BufRead' }
+  use "tpope/vim-fugitive"
   use { "tpope/vim-surround", event = 'BufRead' }
   use "tpope/vim-repeat"
 
