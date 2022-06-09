@@ -66,6 +66,7 @@ return packer.startup(function(use)
   -- Lsp / treesitter
   use 'neovim/nvim-lspconfig'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', }
+  use { 'rcarriga/nvim-notify' }
 
   -- Git
   use 'ThePrimeagen/git-worktree.nvim'
