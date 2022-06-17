@@ -1,5 +1,10 @@
 #zhistory# Access to binary files (multiple paths on top of $PATH)
-export PATH="$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/bins:$HOME/.config/bin:$PATH"
+export PATH="$HOME/.config/bin:$PATH"
+export PATH="$HOME/Library/Python/3.8/bin:$PATH"
+export PATH="$HOME/.pyenv/shimes:$PATH"
+export PATH="$HOME/.pyenv/versions/2.7.18/bin:$PATH"
+export PATH="$HOME/:/opt/homebrew/bin:$PATH"
+export PATH="$HOME/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/bins:$PATH"
 
 # Alias for Intel based Homebrew install
 alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'
