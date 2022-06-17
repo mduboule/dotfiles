@@ -68,7 +68,6 @@ return packer.startup(function(use)
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   -- use { 'jose-elias-alvarez/typescript.nvim' }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', }
-  use { 'NvChad/nvim-colorizer.lua', config = "require('md.plugins.colorizer')" }
   use { 'rcarriga/nvim-notify' }
   use "b0o/SchemaStore.nvim"
 
