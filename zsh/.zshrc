@@ -22,33 +22,34 @@ alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'
 bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
 
+# Useful Functions
+source "$ZDOTDIR/utils/functions"
+
 # Theme, colors and prompt
-# autoload -U colors && colors
-# export CLICOLOR=1
-# export LSCOLORS="Gxfxcxdxbxegedabagacad"
-setopt prompt_subst
-source $ZDOTDIR/themes/cobalt2.zsh-theme
+zsh_add_file "/themes/cobalt2.zsh-theme"
+# Source Z jump
+zsh_add_file "/z/z.zsh"
 
-# Ommit cd when changing directory
-setopt auto_cd
-
-source $ZDOTDIR/completion.zsh
-
-#fUse vim keys in tab complete menu:
-# bindkey -M menuselect 'h' vi-backward-char
-# bindkey -M menuselect 'k' vi-up-line-or-history
-# bindkey -M menuselect 'l' vi-forward-char
-# bindkey -M menuselect 'j' vi-down-line-or-history
-# bindkey -v '^?' backward-delete-char
-
-# Will ask you before executing the rm command with a star: rm folder/*
-unsetopt RM_STAR_SILENT
-
-# Wait ten seconds before executing the rm command with a star: rm folder/*
-setopt RM_STAR_WAIT
+setopt prompt_subst # Allow fancy stuff with prompt
+setopt autocd # Ommit cd when changing directory
+setopt menucomplete # Insert first match on ambiguous completion
+unsetopt RM_STAR_SILENT # Will ask you before executing the rm command with a star: rm folder/*
+setopt RM_STAR_WAIT # Wait ten seconds before executing the rm command with a star: rm folder/*
+stty stop undef	# Disable ctrl-s to freeze terminal
 
 # Source aliases
 for f in $ZDOTDIR/aliases/*; do source "$f"; done
+
+# My original completion setup
+# source $ZDOTDIR/completion
+
+# Plugins
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "hlissner/zsh-autopair"
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
 
 # # Sets iterm 2 tab/window title to current directory
 autoload -U add-zsh-hook
@@ -57,9 +58,6 @@ tab_title() {
   echo -ne "\e]1;${PWD##*/}\a"
 }
 add-zsh-hook precmd tab_title
-
-# Source Z jump
-source $ZDOTDIR/z/z.zsh
 
 # nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
