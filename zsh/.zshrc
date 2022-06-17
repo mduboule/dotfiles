@@ -6,6 +6,15 @@ export PATH="$HOME/.pyenv/versions/2.7.18/bin:$PATH"
 export PATH="$HOME/:/opt/homebrew/bin:$PATH"
 export PATH="$HOME/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/bins:$PATH"
 
+# Python please work now
+# https://www.mediaglasses.blog/2021/10/30/managing-python-on-macos-monterey/
+if command -v pyenv 1>/dev/null 2>&1; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+fi
+
 # Alias for Intel based Homebrew install
 alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'
 
