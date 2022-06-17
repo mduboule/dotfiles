@@ -7,7 +7,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Source entire config
-keymap("n", "<leader><CR>", "<cmd>lua ReloadConfig()<CR>", { noremap = true, silent = false })
+keymap("n", "<leader><CR>", "<cmd>lua ReloadConfig()<CR>", { noremap = true, silent = true })
 
 -- Reset
 keymap("n", "<Up>", "<Nop>", opts)
@@ -36,7 +36,7 @@ keymap("n", "<leader>a", "gg<S-v>G", opts)
 
 -- Escape
 keymap("i", "jk", "<Esc>", opts)
-keymap("n", "<esc><esc>", "<cmd>nohlsearch<cr>", opts)
+keymap("n", "<leader>n", "<cmd>nohlsearch<cr>", opts)
 
 -- Navigate between tabs
 -- keymap("n", "<Tab>", ">>", opts)

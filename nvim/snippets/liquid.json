@@ -1,6 +1,6 @@
 {
   "Tag if": {
- "   "prefix": "if",
+    "prefix": "if",
     "description": "Control flow tag: if",
     "body": [
       "{% if ${1:condition} %}",
