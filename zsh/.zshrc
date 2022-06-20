@@ -21,6 +21,10 @@ alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'
 # Improves cli history search with arrows
 bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
+bindkey "^p" up-line-or-search # Up
+bindkey "^n" down-line-or-search # Down
+bindkey "^k" up-line-or-search # Up
+bindkey "^j" down-line-or-search # Down
 
 # Useful Functions
 source "$ZDOTDIR/utils/functions"
