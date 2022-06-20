@@ -17,6 +17,17 @@
 
 session_exists=""
 is_new_session=fals
+z_value=$(/bin/zsh -i -c "z -e $1")
+
+# test for empty argument
+if [ -z "$1" ]; then
+	echo "(s.sh) Error: you need to pass a non empty value for the script to work."
+	exit 1
+# test for empty value when searching using z-jump
+elif [ -z "$z_value" ]; then
+	echo "(s.sh) Error: couldn't find a match while searching the z catalog."
+	exit 2
+fi
 
 # Check if tmux session already exists
 if [ "$TERM_PROGRAM" != tmux ]; then
