@@ -1,13 +1,3 @@
--- vim.api.nvim_create_autocmd({ "User" }, {
---   pattern = { "AlphaReady" },
---   callback = function()
---     vim.cmd [[
---       set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
---     ]]
---   end,
--- })
---
-
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "gitcommit", "markdown" },
   callback = function()
@@ -44,4 +34,10 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost", "Inse
   callback = function()
     require("md.plugins.winbar").get_winbar()
   end,
+})
+
+-- Trim white space
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
 })
