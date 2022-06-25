@@ -68,6 +68,7 @@ return packer.startup(function(use)
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   -- use { 'jose-elias-alvarez/typescript.nvim' }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', }
+  use { "ray-x/lsp_signature.nvim", commit = "4852d99f9511d090745d3cc1f09a75772b9e07e9" }
   use { 'rcarriga/nvim-notify' }
   use "b0o/SchemaStore.nvim"
 

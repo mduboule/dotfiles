@@ -7,7 +7,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir" },
+  -- probably a better way but `:lua print(vim.bo.filetype)` will print the active buffer filetype
+  pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir", "null-ls-info" },
   callback = function()
     vim.cmd [[
       nnoremap <silent> <buffer> q :close<CR>
