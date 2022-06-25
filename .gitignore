@@ -27,3 +27,6 @@ zsh/z/.z*
 
 # netwr
 nvim/.netrwhist
+
+# testing
+test/
