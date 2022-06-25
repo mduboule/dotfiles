@@ -1,13 +1,3 @@
--- vim.api.nvim_create_autocmd({ "User" }, {
---   pattern = { "AlphaReady" },
---   callback = function()
---     vim.cmd [[
---       set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
---     ]]
---   end,
--- })
---
-
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "gitcommit", "markdown" },
   callback = function()
@@ -17,7 +7,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir" },
+  -- probably a better way but `:lua print(vim.bo.filetype)` will print the active buffer filetype
+  pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir", "null-ls-info" },
   callback = function()
     vim.cmd [[
       nnoremap <silent> <buffer> q :close<CR>
@@ -44,4 +35,10 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost", "Inse
   callback = function()
     require("md.plugins.winbar").get_winbar()
   end,
+})
+
+-- Trim white space
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
 })

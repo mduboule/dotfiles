@@ -1,4 +1,4 @@
-alias {vi,vim,nvim}='/opt/homebrew/bin/nvim'
+alias {vi,vim}='/usr/local/bin/nvim'
 
 # Alias for Intel based Homebrew install
 alias brow='arch --x86_64 /usr/local/Homebrew/bin/brew'

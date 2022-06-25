@@ -14,6 +14,9 @@ hub
 # nvim
 nvim/plugin/
 
+# testing
+test/*
+
 # apps
 iterm2/
 shopify/

@@ -59,13 +59,19 @@ return packer.startup(function(use)
   use { "windwp/nvim-autopairs", event = 'BufRead' }
   use "lukas-reineke/indent-blankline.nvim" -- add indentation marks
   use "ThePrimeagen/harpoon"
-  use { "aca/emmet-ls", event = 'BufRead' }
+  -- use { "aca/emmet-ls", event = 'BufRead' }
   use "fgheng/winbar.nvim"
   use { "christianchiarulli/nvim-gps", branch = "text_hl" }
 
   -- Lsp / treesitter
   use 'neovim/nvim-lspconfig'
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  -- use { 'jose-elias-alvarez/typescript.nvim' }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', }
+  use { "ray-x/lsp_signature.nvim", commit = "4852d99f9511d090745d3cc1f09a75772b9e07e9" }
+  use { 'rcarriga/nvim-notify' }
+  use "b0o/SchemaStore.nvim"
+  use "RRethy/vim-illuminate"
 
   -- Git
   use 'ThePrimeagen/git-worktree.nvim'
@@ -112,7 +118,7 @@ return packer.startup(function(use)
   -- use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   -- use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   -- use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
- --  use "JoosepAlviste/nvim-ts-context-commentstring"
+  --  use "JoosepAlviste/nvim-ts-context-commentstring"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
