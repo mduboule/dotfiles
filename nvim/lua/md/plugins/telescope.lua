@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 
-local actions = require"telescope.actions"
+local actions = require "telescope.actions"
 local sorters = require "telescope.sorters"
 local previewers = require "telescope.previewers"
 local builtin = require "telescope.builtin"
@@ -55,7 +55,7 @@ M.search_dotfiles = function()
   })
 end
 
-M.live_grep = function ()
+M.live_grep = function()
   local opts = {}
   builtin.live_grep(opts)
 end
@@ -68,22 +68,22 @@ M.work_live_grep = function()
   builtin.live_grep(opts)
 end
 
-M.search_buffers = function ()
+M.search_buffers = function()
   local opts = themes.get_dropdown {
     previewer = false,
     layout_config = {
       width = 0.6,
     }
   }
- builtin.buffers(opts)
+  builtin.buffers(opts)
 end
 
 M.search_SL_framework = function()
-	builtin.find_files({
-		prompt_title = "Search Framework 2",
-		cwd = vim.env.DOTFILES,
-		hidden = false,
-	})
+  builtin.find_files({
+    prompt_title = "Search Framework 2",
+    cwd = vim.env.DOTFILES,
+    hidden = false,
+  })
 end
 
 return M

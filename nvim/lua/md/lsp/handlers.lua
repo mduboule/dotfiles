@@ -35,10 +35,12 @@ M.setup = function()
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
+    width = 60
   })
 
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
     border = "rounded",
+    width = 60
   })
 end
 
@@ -103,29 +105,34 @@ M.on_attach = function(client, bufnr)
 end
 
 function M.enable_format_on_save()
-  local group = vim.api.nvim_create_augroup("format_on_save", { clear = false })
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    callback = function()
-      vim.lsp.buf.format()
-    end,
-    group = group,
-  })
-  require("notify")("Enabled format on save", "info", { title = "LSP", timeout = 2000 })
+  vim.cmd [[
+    augroup format_on_save
+      autocmd!
+      autocmd BufWritePre * lua vim.lsp.buf.format({ async = true })
+    augroup end
+  ]]
+  vim.notify "Enabled format on save"
 end
 
 function M.disable_format_on_save()
-  vim.api.nvim_del_augroup_by_name("format_on_save")
-  require("notify")("Disabled format on save", "info", { title = "LSP", timeout = 2000 })
+  M.remove_augroup "format_on_save"
+  vim.notify "Disabled format on save"
 end
 
 function M.toggle_format_on_save()
-  if vim.fn.exists("#format_on_save#BufWritePre") == 0 then
+  if vim.fn.exists "#format_on_save#BufWritePre" == 0 then
     M.enable_format_on_save()
   else
     M.disable_format_on_save()
   end
 end
 
-vim.api.nvim_create_user_command("LspToggleAutoFormat", 'lua require("md.lsp.handlers").toggle_format_on_save()', {})
+function M.remove_augroup(name)
+  if vim.fn.exists("#" .. name) == 1 then
+    vim.cmd("au! " .. name)
+  end
+end
+
+vim.cmd [[ command! LspToggleAutoFormat execute 'lua require("md.lsp.handlers").toggle_format_on_save()' ]]
 
 return M

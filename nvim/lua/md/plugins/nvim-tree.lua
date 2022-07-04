@@ -42,6 +42,7 @@ nvim_tree.setup {
       enable = true,
     },
     icons = {
+      webdev_colors = true,
       glyphs = {
         git = {
           unstaged = "",
