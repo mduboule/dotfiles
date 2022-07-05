@@ -12,6 +12,8 @@ alias ib='PATH=/usr/local/bin'
 alias sz='source ~/.config/zsh/.zshrc'
 alias ez='nvim ~/.config/zsh/.zshrc'
 
+alias b=bat
+alias bp='bat package.json'
 alias c=clear
 alias md=mkdir
 alias rd=rmdir
