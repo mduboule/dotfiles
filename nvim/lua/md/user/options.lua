@@ -2,7 +2,7 @@
 local options = {
   wildmenu = true,
   wildmode = { 'longest', 'list', 'full' },
-  completeopt = { 'menu', 'menuone', 'noselect'}, -- setup for autocompletion...
+  completeopt = { 'menu', 'menuone', 'noselect' }, -- setup for autocompletion...
   mouse = "a", -- enable mouse in neovim, I shall be punished by death
   number = true,
   relativenumber = true,
@@ -14,7 +14,7 @@ local options = {
   title = true, -- sets the window title to filename [+=-] (path) - NVIM
   backup = false,
   pumheight = 10, -- pop up menu height
-  cmdheight = 2, -- more space for the command line bar
+  cmdheight = 1, -- more space for the command line bar
   signcolumn = "yes", -- when and how to draw the signcolumn
   scrolloff = 10, -- minimal number of screen line above/below cursor
   sidescrolloff = 8, -- horizontal scrolloff
