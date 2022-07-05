@@ -26,6 +26,7 @@ toggl-cli/
 .zsh_history
 .zsh_sessions
 .zcompdump
+.zcompcache/
 zsh/z/.z*
 
 # netwr
