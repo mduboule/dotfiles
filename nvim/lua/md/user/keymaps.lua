@@ -84,8 +84,8 @@ keymap("n", "<C-h>", "<cmd>cprev<CR>zz", opts)
 keymap("n", "<C-l>", "<cmd>cnext<CR>zz", opts)
 
 -- Move group of lines
-keymap("v", "J", "<cmd>move '>+1<CR>gv=gv", opts)
-keymap("v", "K", "<cmd>move '<-2<CR>gv=gv", opts)
+keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
+keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
 keymap("i", "<C-j>", "<esc><cmd>m .+1<CR>==i", opts)
 keymap("i", "<C-k>", "<esc><cmd>m .-2<CR>==i", opts)
 
