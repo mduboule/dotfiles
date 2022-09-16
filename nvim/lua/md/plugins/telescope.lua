@@ -55,6 +55,22 @@ M.search_dotfiles = function()
   })
 end
 
+M.find_files_dist = function()
+  local opts = {
+    cwd = "./dist",
+    prompt_title = "Find Files in dist/"
+  }
+  builtin.find_files(opts)
+end
+
+M.dist_live_grep = function()
+  local opts = {
+    cwd = "./dist",
+    prompt_title = "Live Grep in dist/"
+  }
+  builtin.live_grep(opts)
+end
+
 M.live_grep = function()
   local opts = {}
   builtin.live_grep(opts)
