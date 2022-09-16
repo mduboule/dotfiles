@@ -4,6 +4,7 @@ export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 export PATH="$HOME/.pyenv/shimes:$PATH"
 export PATH="$HOME/.pyenv/versions/2.7.18/bin:$PATH"
 export PATH="$HOME/:/opt/homebrew/bin:$PATH"
+export PATH="$HOME/:/opt/homebrew/sbin:$PATH"
 export PATH="$HOME/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/bins:$PATH"
 
 # Python please work now
