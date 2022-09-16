@@ -16,7 +16,10 @@ ctrl - a : yabai -m space --focus $(yabai -m query --displays --display | jq -r 
 ctrl - s : yabai -m space --focus $(yabai -m query --displays --display | jq -r '.spaces[1]')
 ctrl - d : yabai -m space --focus $(yabai -m query --displays --display | jq -r '.spaces[2]')
 ctrl - f : yabai -m space --focus $(yabai -m query --displays --display | jq -r '.spaces[3]')
-ctrl - u : yabai -m space --focus $(yabai -m query --displays --display | jq -r '.spaces[4]')
+ctrl + alt - a : yabai -m space --focus $(yabai -m query --displays --display | jq -r '.spaces[4]')
+ctrl + alt - s : yabai -m space --focus $(yabai -m query --displays --display | jq -r '.spaces[5]')
+ctrl + alt - d : yabai -m space --focus $(yabai -m query --displays --display | jq -r '.spaces[6]')
+ctrl + alt - f : yabai -m space --focus $(yabai -m query --displays --display | jq -r '.spaces[7]')
 
 # focus window
 alt - h : yabai -m window --focus west
