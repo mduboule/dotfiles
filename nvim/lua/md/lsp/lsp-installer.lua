@@ -1,7 +1,7 @@
 local servers = {
   "bashls",
   "cssls",
-  "cssmodules_ls",
+  -- "cssmodules_ls", this lsp needs to be installed properly or something
   "emmet_ls",
   "html",
   "jsonls",
