@@ -15,6 +15,7 @@ M.setup = function()
 
   local config = {
     virtual_text = false, -- disable virtual text
+    virtual_lines = false,
     signs = {
       active = signs, -- show signs
     },
@@ -25,7 +26,7 @@ M.setup = function()
       focusable = true,
       style = "minimal",
       border = "rounded",
-      source = "always",
+      source = "if_many",
       header = "",
       prefix = "",
     },
@@ -35,21 +36,22 @@ M.setup = function()
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
-    width = 60
+    -- width = 60
   })
 
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
     border = "rounded",
-    width = 60
+    -- width = 60
   })
 end
 
-local function lsp_highlight_document(client)
-  local status_ok, illuminate = pcall(require, "illuminate")
+local function attach_navic(client, bufnr)
+  vim.g.navic_silence = true
+  local status_ok, navic = pcall(require, "nvim-navic")
   if not status_ok then
     return
   end
-  illuminate.on_attach(client)
+  navic.attach(client, bufnr)
 end
 
 local function lsp_keymaps(bufnr)
@@ -79,14 +81,12 @@ local function lsp_keymaps(bufnr)
   buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
   buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
   buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-  vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]])
+  -- vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]])
 end
 
 M.on_attach = function(client, bufnr)
-  local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-  if not status_cmp_ok then
-    return
-  end
+  lsp_keymaps(bufnr)
+  attach_navic(client, bufnr)
 
   if client.name == "tsserver" then
     client.server_capabilities.document_formatting = true
@@ -96,19 +96,18 @@ M.on_attach = function(client, bufnr)
     client.server_capabilities.document_formatting = true
   end
 
-  M.capabilities = vim.lsp.protocol.make_client_capabilities()
-  M.capabilities.textDocument.completion.completionItem.snippetSupport = true
-  M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+  -- M.capabilities = vim.lsp.protocol.make_client_capabilities()
+  -- M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+  -- M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
 
-  lsp_highlight_document(client)
-  lsp_keymaps(bufnr)
+  -- lsp_highlight_document(client)
 end
 
 function M.enable_format_on_save()
   vim.cmd [[
     augroup format_on_save
       autocmd!
-      autocmd BufWritePre * lua vim.lsp.buf.format({ async = true })
+      autocmd BufWritePre * lua vim.lsp.buf.format({ async = false })
     augroup end
   ]]
   vim.notify "Enabled format on save"

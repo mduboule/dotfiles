@@ -61,6 +61,7 @@ return packer.startup(function(use)
   use "ThePrimeagen/harpoon"
   -- use { "aca/emmet-ls", event = 'BufRead' }
   use "fgheng/winbar.nvim"
+  use "SmiteshP/nvim-navic"
   use { "christianchiarulli/nvim-gps", branch = "text_hl" }
 
   -- Lsp / treesitter

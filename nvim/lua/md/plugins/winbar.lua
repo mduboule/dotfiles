@@ -20,7 +20,7 @@ M.winbar_filetype_exclude = {
 local functions = require('md.core.functions')
 local icons = require('md.core.icons')
 
-local get_filename = function()
+M.get_filename = function()
   local filename = vim.fn.expand "%:t"
   local extension = vim.fn.expand "%:e"
   local full_path = vim.fn.expand "%:p"
@@ -32,11 +32,6 @@ local get_filename = function()
       { default = true }
     )
 
-    local marker = ""
-    if string.find(full_path, "framework") then
-      marker = "FW "
-    end
-
     local hl_group = "FileIconColor" .. extension
 
     vim.api.nvim_set_hl(0, hl_group, { fg = file_icon_color })
@@ -45,12 +40,20 @@ local get_filename = function()
       file_icon_color = ""
     end
 
-    return " " .. marker .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#LineNr#" .. filename .. "%*"
+    local frameworkMarker = ""
+    if string.find(full_path, "framework") then
+      frameworkMarker = "FW "
+    end
+
+    local navic_text = vim.api.nvim_get_hl_by_name("NavicText", true)
+    vim.api.nvim_set_hl(0, "Winbar", { fg = navic_text.foreground })
+
+    return " " .. frameworkMarker .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#LineNr#" .. filename .. "%*"
   end
 end
 
 local get_gps = function()
-  local status_gps_ok, gps = pcall(require, "nvim-gps")
+  local status_gps_ok, gps = pcall(require, "nvim-navic")
   if not status_gps_ok then
     return ""
   end
@@ -64,7 +67,7 @@ local get_gps = function()
     return ""
   end
 
-  if not functions.isempty(gps_location) then
+  if not require("md.core.functions").isempty(gps_location) then
     return icons.ui.ChevronRight .. " " .. gps_location
   else
     return ""
@@ -83,7 +86,7 @@ M.get_winbar = function()
   if excludes() then
     return
   end
-  local value = get_filename()
+  local value = M.get_filename()
 
   local gps_added = false
   if not functions.isempty(value) then
@@ -95,7 +98,7 @@ M.get_winbar = function()
   end
 
   if not functions.isempty(value) and functions.get_buf_option "mod" then
-    local mod = "%#LineNr#" .. icons.ui.Circle .. "%*"
+    local mod = "%#LineNr#" .. require('md.core.icons').ui.Circle .. "%*"
     if gps_added then
       value = value .. " " .. mod
     else
@@ -108,5 +111,25 @@ M.get_winbar = function()
     return
   end
 end
+
+M.create_winbar = function()
+  vim.api.nvim_create_augroup("_winbar", {})
+  if vim.fn.has "nvim-0.8" == 1 then
+    vim.api.nvim_create_autocmd(
+      { "CursorMoved", "CursorHold", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost", "TabClosed" },
+      {
+        group = "_winbar",
+        callback = function()
+          local status_ok, _ = pcall(vim.api.nvim_buf_get_var, 0, "lsp_floating_window")
+          if not status_ok then
+            require("md.plugins.winbar").get_winbar()
+          end
+        end,
+      }
+    )
+  end
+end
+
+M.create_winbar()
 
 return M
