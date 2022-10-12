@@ -40,15 +40,21 @@ M.get_filename = function()
       file_icon_color = ""
     end
 
-    local frameworkMarker = ""
+    if extension == 'liquid' then
+      file_icon = ""
+      vim.api.nvim_set_hl(0, "Liquid", { default = true, fg = "#95BF47"})
+      hl_group = "Liquid"
+    end
+
+    local framework_marker = ""
     if string.find(full_path, "framework") then
-      frameworkMarker = "FW "
+      framework_marker = "FW "
     end
 
     local navic_text = vim.api.nvim_get_hl_by_name("NavicText", true)
-    vim.api.nvim_set_hl(0, "Winbar", { fg = navic_text.foreground })
+    vim.api.nvim_set_hl(0, "Winbar", { fg = navic_text.fg })
 
-    return " " .. frameworkMarker .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#LineNr#" .. filename .. "%*"
+    return " " .. framework_marker .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#Winbar#" .. filename .. "%*"
   end
 end
 
