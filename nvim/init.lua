@@ -10,6 +10,7 @@ require("md.user.colors")
 
 require("md.lsp")
 
+require("md.plugins.neoscroll")
 require("md.plugins.plugins")
 require("md.plugins.nvim-tree")
 require("md.plugins.illuminate")
