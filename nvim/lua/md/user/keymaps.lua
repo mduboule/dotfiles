@@ -121,7 +121,7 @@ keymap("n", "<leader>ttp", "<cmd>lua require('md.plugins.telescope').work_projec
 keymap("n", "<leader>tg", "<cmd>lua require('md.plugins.telescope').live_grep()<CR>", opts)
 keymap("n", "<leader>ttg", "<cmd>lua require('md.plugins.telescope').work_live_grep()<CR>", opts)
 keymap("n", "<leader>td", "<cmd>lua require('md.plugins.telescope').find_files_dist()<CR>", opts)
-keymap("n", "<leader>tgd", "<cmd>lua require('md.plugins.telescope').dist_live_grep()<CR>", opts)
+keymap("n", "<leader>tdg", "<cmd>lua require('md.plugins.telescope').dist_live_grep()<CR>", opts)
 keymap("n", "<leader>th", "<cmd>lua require('telescope.builtin').help_tags()<CR>", opts)
 keymap("n", "<leader>tf", "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", opts)
 keymap("n", "<leader>tr", "<cmd>lua require('telescope.builtin').registers()<CR>", opts)

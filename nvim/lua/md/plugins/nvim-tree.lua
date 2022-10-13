@@ -8,21 +8,12 @@ if not config_status_ok then
   return
 end
 
--- Replaces auto_close
 local tree_cb = nvim_tree_config.nvim_tree_callback
-vim.api.nvim_create_autocmd("BufEnter", {
-  nested = true,
-  callback = function()
-    if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
-      vim.cmd "quit"
-    end
-  end
-})
 
 -- see `:help nvim-tree.OPTION_NAME`
 nvim_tree.setup {
   view = {
-    width = 40,
+    width = 50,
     hide_root_folder = false,
     side = "right",
     signcolumn = "yes",

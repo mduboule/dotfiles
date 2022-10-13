@@ -7,14 +7,14 @@ devicons.set_icon {
   sh = {
     icon = "",
     color = "#1DC123",
-    cterm_color = "59",
-    name = "Sh",
+    cterm_color = "61",
+    name = "Sy",
   },
-  liquid = {
+  ["liquid"] = {
     icon = "",
     color = "#95BF47",
     cterm_color = "59",
-    name = "liquid"
+    name = "Liquid"
   },
   [".gitattributes"] = {
     icon = "",
