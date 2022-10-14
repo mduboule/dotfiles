@@ -20,6 +20,25 @@ treesitter.setup {
       enable_autocmd = false,
     },
   },
+  autopairs = {
+    enable = true,
+  },
+  rainbow = {
+    enable = true,
+    extended_mode = false,
+    colors = {
+      -- "#68a0b0",
+      -- "#946EaD",
+      -- "#c7aA6D",
+      "Gold",
+      "Orchid",
+      "DodgerBlue",
+      -- "Cornsilk",
+      -- "Salmon",
+      -- "LawnGreen",
+    },
+    disable = { "html" },
+  },
 }
 
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()

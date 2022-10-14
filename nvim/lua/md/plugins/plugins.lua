@@ -91,6 +91,7 @@ return packer.startup(function(use)
 
   -- Colors
   use { "lunarvim/darkplus.nvim", commit = "f20cba5d690bc34398a3a8372ee7bbbc7b6609fa" }
+  use { "p00f/nvim-ts-rainbow", commit = "1ec3f880585c644ddd50a51502c59f4e36f03e62" }
   use { "nvim-colortils/colortils.nvim", commit = "49bbc9c849fa279378d451765f4a978878691c42" }
 
   -- Performance
