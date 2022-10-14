@@ -23,7 +23,15 @@ treesitter.setup {
   autopairs = {
     enable = true,
   },
-  rainbow = {
+  autotag = { -- nvim-ts-autotag plugin
+    enable = true,
+    filetypes = {
+      'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript', 'liquid',
+      'php',
+      'glimmer', 'handlebars', 'hbs'
+    }
+  },
+  rainbow = { -- nvim-ts-rainbow plugin
     enable = true,
     extended_mode = false,
     colors = {

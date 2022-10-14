@@ -55,6 +55,8 @@ return packer.startup(function(use)
   use { "ThePrimeagen/harpoon", commit = "4dfe94e633945c14ad0f03044f601b8e6a99c708" }
   -- use { "aca/emmet-ls", event = 'BufRead' }
   use { "SmiteshP/nvim-navic", commit = "132b273773768b36e9ecab2138b82234a9faf5ed" }
+  use { "mbbill/undotree", commit = "bd60cb564e3c3220b35293679669bb77af5f389d"}
+  use { "windwp/nvim-ts-autotag", commit = "fdefe46c6807441460f11f11a167a2baf8e4534b" }
 
   -- Lsp / treesitter
   use { "neovim/nvim-lspconfig", commit = "28ec7c4f4ad4701a88024fb8105ac7baff7d4f2a" }
