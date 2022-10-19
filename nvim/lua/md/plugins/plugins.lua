@@ -48,7 +48,6 @@ return packer.startup(function(use)
   -- Editing
   use { "nvim-lualine/lualine.nvim", commit = "edca2b03c724f22bdc310eee1587b1523f31ec7c" }
   use "karb94/neoscroll.nvim"
-  -- use "psliwka/vim-smoothie" -- smooth scrolling
   use { "numToStr/Comment.nvim", commit = "250bbc5a04b6e80ff1c212e89a80e976cda9e433" }
   use { "windwp/nvim-autopairs", commit = "4fc96c8f3df89b6d23e5092d31c866c53a346347", event = 'BufRead' }
   use { "lukas-reineke/indent-blankline.nvim", commit = "db7cbcb40cc00fc5d6074d7569fb37197705e7f6" } -- add indentation marks
