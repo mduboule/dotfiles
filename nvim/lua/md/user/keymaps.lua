@@ -38,10 +38,6 @@ keymap("n", "<leader>a", "gg<S-v>G", opts)
 keymap("i", "jk", "<Esc>", opts)
 keymap("n", "<leader>n", "<cmd>nohlsearch<cr>", opts)
 
--- Navigate between tabs
--- keymap("n", "<Tab>", ">>", opts)
--- keymap("n", "<S-Tab>", "<<", opts)
-
 -- Why is it backward
 keymap("n", "<Tab>", ">>", opts)
 keymap("n", "<S-Tab>", "<<", opts)
